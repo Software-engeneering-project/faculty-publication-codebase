@@ -5,8 +5,10 @@ import {
   Route,
   useRoutes,
 } from "react-router-dom";
-import Login from './pages/Login'
-import Register from './pages/Register'
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
+import Home from './components/Home'
+
 
 const App = () => {
 
@@ -16,6 +18,7 @@ const App = () => {
       <Routes>
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login />}  />
+        <Route path="/Home"  element = {<Home />}/>  
         </Routes>
       </BrowserRouter>
     </div>   

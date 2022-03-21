@@ -4,7 +4,6 @@ import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-
 function Register() {
   const [name, SetName] = useState('')
   const [email, setEmail] = useState('')
@@ -15,7 +14,7 @@ function Register() {
   {
     event.preventDefault();
     
-    navigate('/login');
+    
 
     const response = await fetch("http://localhost:1337/api/register",{
       method: "POST",
@@ -29,8 +28,20 @@ function Register() {
         // cpassword
       }),
     })
+
+    console.log('hi')
     const data = await response.json()
+    console.log('hii')
     console.log(data)
+
+    if(data.status === 'ok'){
+      alert('Registration successfull')
+      navigate('/login');
+    }
+    else{
+        alert('Invalid Crednetials')
+    }
+
   }
   return (
     <div>
@@ -40,7 +51,6 @@ function Register() {
         <input type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
         <input type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
         {/* <input type = "password" placeholder = "Confirm Password" value = {cpassword} onChange = {(e) => setPassword(e.target.value)}/> */}
-        <a href="https://www.freecodecamp.org/"><button>freeCodeCamp</button></a> 
         <input type = "submit" value = "Submit" />
       </form>}
     </div>

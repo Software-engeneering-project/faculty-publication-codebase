@@ -64,19 +64,16 @@ app.post('/api/register',async(req,res) => {
                 if(err)
                 {
                     console.log('User not added');
+                    return res.json({status : 'error'})
                 }
                 // this.context.router.transitionTo("/login");
                 // res.redirect('http://localhost:3000/login')
                 console.log("created user : ",newu);
+                return res.json({status : 'ok'})
                 //window.location.href('./api/login')
             });
             
             //  res.redirect('Login')
-        
-        
-    
-     
-    // res.send("hello world")
 })
 
 

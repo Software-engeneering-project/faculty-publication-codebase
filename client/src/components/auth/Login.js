@@ -1,14 +1,11 @@
 // import logo from './logo.svg';
 
 import {useState} from 'react'
+import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import '../css/Login.css'
 
 
-
-const inputStyle = {
-  marginLeft:'50%',
-  padding:'30px'
-}
 
 
 function Login() {
@@ -45,12 +42,23 @@ function Login() {
 
   }
   return (
-    <div style={{backgroundColor: "#5885AF",width:'70%',margin:'auto'}}>
-      <h1>Login</h1>
-      <form onSubmit = {loginUser}>
-        <input style = {inputStyle} type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
-        <input style = {inputStyle} type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
-        <input style = {inputStyle} type = "submit" value = "Login" />
+    <div className = "container" >
+     
+      <form className = "form" onSubmit = {loginUser}>
+        <center><h1 className = "heading" >LOGIN</h1> </center>
+        <label className = "label">EMAIL</label>
+        <input className = "field" type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
+        <label className = "label">PASSWORD</label>
+        <input className = "field"  type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
+        <input className = "butt" type = "submit" value = "Login" />
+
+        <p className='bottom-cont'>New here? <Link 
+                to="/register"
+                style={{
+                    color: 'white',
+                }}>Signup</Link>
+            </p>
+
       </form>
     </div>
   );

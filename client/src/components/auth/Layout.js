@@ -1,12 +1,12 @@
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
+import {Row, Col } from 'react-bootstrap'
 
 const noPadding = { padding: 0 }
 
 const Layout = ({ Left, Right }) => {
 
     return (
-        <Row style={{ minHeight: '100vh' }}>
+        <Row style={{ minHeight: '100vh',overflow:'hidden'}}>
             <Col xs="12" lg="7" md="6" style={noPadding}>
                 <Left />
             </Col>
@@ -19,4 +19,7 @@ const Layout = ({ Left, Right }) => {
 }
 
 export default Layout
+
+
+
 

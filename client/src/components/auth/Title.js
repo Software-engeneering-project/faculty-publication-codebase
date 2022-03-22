@@ -22,10 +22,11 @@ const Title = () => {
     return (
         <div 
             style={{
-                paddingTop: '1vw',
-                paddingLeft: '2vw',
+                paddingTop: '15vw',
+                paddingLeft: '10vw',
+
             }}>
-            <H3>Faculty Publication Repository</H3>
+            <H3 style={{display : "inline"}}>Faculty Publication Repository</H3>
         </div>
     )
 }

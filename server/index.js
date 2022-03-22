@@ -57,12 +57,14 @@ app.post('/api/register',async(req,res) => {
                 name : req.body.name,
             email : req.body.email,
             password : req.body.password,
+            user_type : req.body.user_type
             // cpassword : req.body.cpassword
                 
             },function(err,newu)
             {
                 if(err)
                 {
+                    console.log(err)
                     console.log('User not added');
                     return res.json({status : 'error'})
                 }
@@ -75,7 +77,9 @@ app.post('/api/register',async(req,res) => {
             
             //  res.redirect('Login')
 })
-
+app.post('/api/navbar',async(req,res)=>{
+    console.log(req.body)
+})
 
 app.listen(1337,() => {
     console.log("server started on 1337")

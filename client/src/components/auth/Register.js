@@ -8,6 +8,7 @@ function Register() {
   const [name, SetName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [user_type, SetuserType]  = useState('P')
   // const cpassword = undefined('')
   const navigate = useNavigate();
   async function registerUser(event)
@@ -24,7 +25,8 @@ function Register() {
       body : JSON.stringify({
         name,
         email,
-        password
+        password,
+        user_type
         // cpassword
       }),
     })
@@ -50,6 +52,11 @@ function Register() {
         <input type = "text" placeholder = "Name" value = {name} onChange = {(e) => SetName(e.target.value)} />
         <input type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
         <input type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
+        <select value = {user_type} onChange = {(e) => SetuserType(e.target.value)}>
+                        <option value = "F" >Faculty</option>
+                        <option value = "S">Student</option>
+                        <option value = "P">Public</option>
+                    </select>
         {/* <input type = "password" placeholder = "Confirm Password" value = {cpassword} onChange = {(e) => setPassword(e.target.value)}/> */}
         <input type = "submit" value = "Submit" />
       </form>}

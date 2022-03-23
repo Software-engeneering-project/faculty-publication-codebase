@@ -1,5 +1,4 @@
-import { useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom"
 function PaperDetails () {
     let { id } = useParams();
     console.log(id);

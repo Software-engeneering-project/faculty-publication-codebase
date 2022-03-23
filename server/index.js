@@ -75,6 +75,32 @@ app.post('/api/register',async(req,res) => {
             
             //  res.redirect('Login')
 })
+app.post('/api/login',async(req,res) => {
+    console.log(req.body)
+})
+
+
+app.get('/api/paperdata', async (req, res) => {
+	try {
+		await Paper.find({}, function (err, paperdata) {
+			if (err) {
+                console.log('hi')
+				console.log(error)
+			}
+			else {
+				console.log('query successful')
+				console.log(paperdata)
+				res.json({paperList: paperdata})
+			}
+		});
+
+	} catch (error) {
+		console.log(error)
+		res.json({ status: 'error', error: 'invalid token' })
+	}
+	// console.log("data sent")
+	// res.json({status: "ok"})
+})
 
 
 app.listen(1337,() => {

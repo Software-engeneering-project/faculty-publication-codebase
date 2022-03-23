@@ -9,8 +9,9 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Home from './components/Home'
 import Navbar from './components/auth/navbar'
-import Login1 from './components/auth/Login1'
 import Filter from './components/auth/Filter'
+import Filter1 from "./components/auth/ParentFilter";
+import PaperList from "./components/paperlist";
 
 
 const App = () => {
@@ -23,8 +24,9 @@ const App = () => {
         <Route path="/login" element={<Login />}  />
         <Route path="/Home"  element = {<Home />}/>  
         <Route path="/Navbar"  element = {<Navbar />}/> 
-        <Route path="/Login1"  element = {<Login1 />}/> 
-        <Route path="/Filter"  element = {<Filter />}/>
+        <Route path="/Filter"  element = {<Filter1 />}/>
+        <Route path="/paperlist"  element = {<PaperList />}/>
+
         </Routes>
       </BrowserRouter>
     </div>   

@@ -38,8 +38,6 @@ function Login() {
         alert('Invalid Crednetials')
     }
 
-
-
   }
   return (
     <div className = "container" >

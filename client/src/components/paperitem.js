@@ -1,8 +1,11 @@
 function Paperitem (props) {
 	console.log(props)
 	return (
-        <li onClick={()=>{window.location.href = '/paperdetails/' + props.paperinfo.id}}>{props.paperinfo.name}</li>
+        <li onClick={()=>{window.location.href = '/paperdetails/' + props.paperinfo.id}}>{props.paperinfo.year}</li>
 	)
 }
 
-export default Paperitem
+export default Paperitem 
+
+
+

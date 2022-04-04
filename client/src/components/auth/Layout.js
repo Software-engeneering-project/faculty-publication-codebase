@@ -6,17 +6,17 @@ const noPadding = { padding: 0 }
 const Layout = ({ Left, Right }) => {
 
     return (
-        <Row style={{ minHeight: '100vh',overflow:'hidden'}}>
+        <Row style={{ minHeight: '100vh',margin:'0', width:'100%'}}>
             <Col xs="12" lg="7" md="6" style={noPadding}>
                 <Left />
             </Col>
-
             <Col xs="12" lg="5" md="6" style={noPadding}>
                 <Right />
             </Col>
         </Row>
     )
 }
+
 
 export default Layout
 

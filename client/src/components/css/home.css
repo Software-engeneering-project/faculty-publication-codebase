@@ -1,0 +1,73 @@
+.wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin-left: 5%;
+    height: 100%;
+}
+.wrapper--left {
+    width: 20%;
+    min-width: 200px;
+}
+
+.filter--container {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter--container label {
+    margin: 5% 0 2% 0;
+}
+
+.filter--container select {
+    
+}
+
+.checkbox--container {
+}
+
+.checkbox--container input {
+
+}
+
+.checkbox--container label {
+    margin: 0 5% ;
+}
+
+.wrapper--right {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.paper--card {
+    padding: 2% 5%;
+}
+
+.heading--container {
+    display: flex;
+}
+
+.content--container {
+    width: 80%;
+}
+
+.heading--container h4 {
+    width: 80%;
+}
+
+.heading--container a{
+    color: #1a0dab;
+    margin-left: auto;
+}
+
+.paper--card h4 {
+    color: #1a0dab;
+}
+
+.paper--card h6 {
+    color: #006621;
+}
+
+.reset-but{
+    pointer-events: none;
+}

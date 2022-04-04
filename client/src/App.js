@@ -8,10 +8,12 @@ import {
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Home from './components/Home'
-import Navbar from './components/auth/navbar'
 import Filter from './components/auth/Filter'
-import Filter1 from "./components/auth/ParentFilter";
 import PaperList from "./components/paperlist";
+import Forgotpassword from "./components/auth/forgotpassword";
+import Upload from "./components/auth/upload"
+
+import FacultyDashboard from "./components/auth/FacultyDashboard"
 
 
 const App = () => {
@@ -19,19 +21,20 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-      <Routes>
-        <Route path="/register" element={<Register/>} />
-        <Route path="/login" element={<Login />}  />
-        <Route path="/Home"  element = {<Home />}/>  
-        <Route path="/Navbar"  element = {<Navbar />}/> 
-        <Route path="/Filter"  element = {<Filter1 />}/>
-        <Route path="/paperlist"  element = {<PaperList />}/>
-
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/Filter/:islogged" element={<Filter />} />
+          <Route path="/Filter" element={<Filter />} />
+          <Route path="/paperlist" element={<PaperList />} />
+          <Route path="/forgotpassword" element={<Forgotpassword />} />
+          <Route path="/facultydashboard" element={<FacultyDashboard />} />
+          <Route path="/upload" element={<Upload />} />
         </Routes>
       </BrowserRouter>
-    </div>   
-    )
- }
+    </div>
+  )
+}
 // const App = () => {
 //   let routes = useRoutes([
 //     { path: "login", element: <Login /> },

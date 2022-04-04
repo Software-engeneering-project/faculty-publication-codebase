@@ -38,7 +38,7 @@ function Register() {
 
     if(data.status === 'ok'){
       alert('Registration successfull')
-      navigate('/login');
+      navigate('/');
     }
     else{
         alert('Invalid Crednetials')
@@ -46,22 +46,26 @@ function Register() {
 
   }
   return (
-    <div>
-      <h1>Register</h1>
-      { <form onSubmit = {registerUser} action = 'Login'>
-        <input type = "text" placeholder = "Name" value = {name} onChange = {(e) => SetName(e.target.value)} />
-        <input type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
-        <input type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
+    <div className = "container--form">
+       <form className = "form register--form" onSubmit = {registerUser} action = 'Login'>
+      <h1 className = "heading">Register</h1>
+      <label className = "label">EMAIL</label>
+        <input className = "field" type = "text" placeholder = "Name" value = {name} onChange = {(e) => SetName(e.target.value)} />
+        <label className = "label">EMAIL</label>
+        <input className = "field" type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
+        <label className = "label">EMAIL</label>
+        <input className = "field" type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
         <select value = {user_type} onChange = {(e) => SetuserType(e.target.value)}>
                         <option value = "F" >Faculty</option>
                         <option value = "S">Student</option>
                         <option value = "P">Public</option>
                     </select>
         {/* <input type = "password" placeholder = "Confirm Password" value = {cpassword} onChange = {(e) => setPassword(e.target.value)}/> */}
-        <input type = "submit" value = "Submit" />
-      </form>}
+        <input className = "butt" type = "submit" value = "Submit" />
+      </form>
     </div>
   );
 }
- 
+
+
 export default Register;

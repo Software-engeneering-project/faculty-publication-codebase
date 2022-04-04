@@ -32,7 +32,7 @@ function Login() {
 
     if(data.status === 'ok'){
       alert('Login successfull')
-      navigate('/Home');
+      navigate('/filter/0');
     }
     else{
         alert('Invalid Crednetials')
@@ -56,7 +56,12 @@ function Login() {
                     color: 'white',
                 }}>Signup</Link>
             </p>
-
+            <p className='bottom-cont'><Link 
+                to="/filter/1"
+                style={{
+                    color: 'white',
+                }}>Skip and Visit</Link>
+            </p>
       </form>
     </div>
   );

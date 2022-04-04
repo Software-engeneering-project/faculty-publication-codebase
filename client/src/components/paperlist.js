@@ -1,10 +1,6 @@
 import Paperitem from './paperitem'
 import { useState, useEffect } from 'react'
 
-
-
-
-
 function PaperList() {
     const [listItems, setlistItems] = useState([])
 
@@ -23,17 +19,19 @@ function PaperList() {
         }
 
         getpaper();
-
     }, [])
     //moviedata.movieList.map((paperinfo) => <Paperitem key = {paperinfo.id} paperinfo={paperinfo} />)
     //moviedata.movieList.map((paperinfo) => console.log(paperinfo))
     return (
         <>
-{ listItems > 0 && listItems.map((paperinfo) => <Paperitem key={paperinfo.DOI} paperinfo={paperinfo} />) }
+{ listItems.length > 0 && listItems.map((paperinfo) => <Paperitem key={paperinfo.DOI} paperinfo={paperinfo} />) }
         </>
     )
 }
 
+
+
+
+
+
 export default PaperList
-
-

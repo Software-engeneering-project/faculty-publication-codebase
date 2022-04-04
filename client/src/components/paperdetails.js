@@ -1,4 +1,7 @@
 import { useParams } from "react-router-dom"
+import { useState, useEffect } from 'react';
+
+
 function PaperDetails () {
     let { id } = useParams();
     console.log(id);
@@ -11,3 +14,5 @@ function PaperDetails () {
 }
 
 export default PaperDetails
+
+

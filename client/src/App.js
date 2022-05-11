@@ -12,8 +12,9 @@ import Filter from './components/auth/Filter'
 import PaperList from "./components/paperlist";
 import Forgotpassword from "./components/auth/forgotpassword";
 import Upload from "./components/auth/upload"
-
+import Faculty_Filter from "./components/auth/Faculty_Filter"
 import FacultyDashboard from "./components/auth/FacultyDashboard"
+
 
 
 const App = () => {
@@ -24,12 +25,13 @@ const App = () => {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Home />} />
-          <Route path="/Filter/:islogged" element={<Filter />} />
           <Route path="/Filter" element={<Filter />} />
+          {/* <Route path="/Filter" element={<Filter />} /> */}
           <Route path="/paperlist" element={<PaperList />} />
           <Route path="/forgotpassword" element={<Forgotpassword />} />
           <Route path="/facultydashboard" element={<FacultyDashboard />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/faculty_filter" element = {<Faculty_Filter />}/>
         </Routes>
       </BrowserRouter>
     </div>

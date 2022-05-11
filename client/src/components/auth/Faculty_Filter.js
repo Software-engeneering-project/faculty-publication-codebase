@@ -5,15 +5,20 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Display from './display';
 import Papers from "./temp_data";
 import "./../css/home.css"
-import Navbar from './navbar'
+import FacultyNavbar from './faculty_navbar'
 import CryptoAES from 'crypto-js/aes';
 import CryptoENC from 'crypto-js/enc-utf8';
+
 
 const inputStyle = {
   marginLeft: '50%',
   padding: '30px'
 }
 
+
+const uploadbutn = {
+  padding : '15px'
+}
 
 const reset  = {
   pointerEvents: 'none',
@@ -22,16 +27,27 @@ const reset  = {
   width : '30%'
 }
 
-function Filter() {
+function Faculty_Filter() {
 
-  let {islogged} = useParams();
-  // var _ciphertext = CryptoAES.decrypt(islogged.toString(), 'secret key 123');
-  // console.log(_ciphertext.toString(CryptoENC));
+  // const {id} = route.params;
+
+  // console.log(id)
+let {islogged} = useParams();
+
+var faculty_details = JSON.parse(localStorage.getItem("details"));
+console.log(faculty_details)
+console.log(faculty_details.name)
+
+
+  // useEffect(() => {
+  //   var _ciphertext = CryptoAES.decrypt(islogged.toString(), 'secret key 123');
+  //     console.log(_ciphertext.toString(CryptoENC));
   // let s = islogged.split(",")
   // console.log(s)
-
-  var student_details = localStorage.getItem("details");
-  console.log(student_details)
+  // })
+  
+  var user_details = localStorage.getItem("details");
+  console.log(user_details)
 
   const [area, setArea] = useState('none')
   const [issuedby, setIssueby] = useState('none')
@@ -42,8 +58,9 @@ function Filter() {
   const [typep, setypep] = useState("none")
   const [listItems, setlistItems] = useState([])
   const [details, setDetails] = useState([])
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [myRows, setMyRows] = useState([]);
+  
 
 function handlereset() {
   setArea("none");
@@ -55,9 +72,7 @@ function handlereset() {
   setypep("none")
 }
 
-  const calculation = useMemo(() => { }, [myRows]);
-
-
+  // const calculation = useMemo(() => { }, [myRows]);
 
   useEffect(() => {
 
@@ -102,6 +117,9 @@ function handlereset() {
   }, [area, issuedby, year, citation, patent, privat, details, typep]);
 
 
+  // function Facultyuploadfun(){
+  //   navigate('/upload')
+  // }
 
   const options = ["none",...new Set(details.map(details => details.area))];
 
@@ -117,7 +135,8 @@ function handlereset() {
 
   return (
     <>
-      <Navbar/>
+      <FacultyNavbar islogged = {islogged}/>
+
       <div className='wrapper'>
       <div className='wrapper--left'>
         <form className='filter--container'>
@@ -167,4 +186,4 @@ function handlereset() {
   );
 }
 
-export default Filter;
+export default Faculty_Filter;

@@ -1,9 +1,11 @@
+var jwt = require('jsonwebtoken');
 const express = require('express')
 const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const User = require('./models/user_model')
 const Paper = require('./models/paper_model')
+const recent_paper = require("./models/recentlyadded")
 app.use(cors())
 app.use(express.json())
 
@@ -23,7 +25,6 @@ mongoose.connect('mongodb://localhost:27017/practice', { useNewUrlParser: true, 
         console.log('Error connecting to MongoDB:', error.message)
 
     })
-
 
     app.post("/api/upload",async(req,res) =>{
         console.log(req.body)
@@ -74,32 +75,82 @@ mongoose.connect('mongodb://localhost:27017/practice', { useNewUrlParser: true, 
 
 
     app.post('/api/login',async(req,res) => {
+        
+            const user = await User.findOne({
+                email : req.body.email
+            })
+            
+            try{
+                if(user.password == req.body.password)
+                {
+                 
+                    console.log("correct Password")
+                    return res.json({status:"success"});
+        
+                }
+                else{
+                    return res.json({status : 'error'})
+                }
+            } catch(e){
+                return res.json({status : 'error'})
+            }
+            
+            
+    })
+app.post('/api/register',async(req,res) => {
+    console.log(req.body)
+        
+             User.create({
+                name : req.body.name,
+            email : req.body.email,
+            password : req.body.password,
+            user_type : req.body.user_type
+                
+            },function(err,newu)
+            {
+                if(err)
+                {
+                    console.log('User not added');
+                    return res.json({status : 'error'})
+                }
+                // this.context.router.transitionTo("/login");
+                // res.redirect('http://localhost:3000/login')
+                console.log("created user : ",newu);
+                return res.json({status : 'ok'})
+                //window.location.href('./api/login')
+            });
+            
+            //  res.redirect('Login')
+})
+
+    app.post('/api/login1',async(req,res) => {
         console.log(req.body)
         
             const user = await User.findOne({
                 email : req.body.email
             })
             console.log(user.password)
+           
             
+            try{
+                    
             if(user.password == req.body.password)
             {
+             
                 console.log("correct Password")
-                return res.json({status : 'ok'})
+                res.json({...user._doc })
+                // return res.json({status:"success"});
     
             }
             else{
                 return res.json({status : 'error'})
             }
-            // res.json({status : "ok"})
-    
-        // if (user)
-        // {
-        //     return res.json({status : 'ok'})
-        // }
-        // else{
-        //     return res.json({status : 'error'})
-        // }
-        // res.send("hello world")
+            
+            } catch(e) {
+                return res.json({status : 'error'})
+            }
+
+        
     })
 app.post('/api/register',async(req,res) => {
     console.log(req.body)
@@ -127,34 +178,39 @@ app.post('/api/register',async(req,res) => {
             
             //  res.redirect('Login')
 })
-app.post('/api/login',async(req,res) => {
-    console.log(req.body)
-})
+// app.post("/api/login/",async(req,res) => {
+//     const user = await User.findOne({
+// 		email: req.body.email,
+//         password: req.body.password
+// 	})
+
+// 	if (!user) {
+// 		return { status: 'error', error: 'Invalid login' }
+// 	}
+//     else{
+//         window.alert('Login successful')
+//     }
+    
+// })
 app.post('/api/forgotpassword',async(req,res) => {
     // try{
         console.log(req.body)
-        var user = await User.find({email : req.body.email});
-        console.log(user)
-        if(!user){
-            return res.status(400).json({status : 'user not found'})
-        }
-
-        
-        user.password = req.params.password
-
-        await user.Save({ validateBeforeSave: false }).then(data => {
-            return res.status(200).json({status : 'Success'})
-        })
-        .catch(err => {
-            return res.status(400).json({status : 'Error'})
-        })
+        var user = await User.findOne({email : req.body.email});
+        console.log(user.email);
+        var nuser = {_id : user._id,email : req.body.email,name : user.name,password : req.body.password,user_type : user.user_type}
+        console.log(nuser)
+        User.findByIdAndUpdate({ _id: nuser._id }, nuser, { new: true }, (err, doc) => {
 
 
+            if (!err) { 
+                console.log("Password updated successfully")
+                return res.json({status : 'success'}); }
+            else {
+                return res.json({status : 'error'});
+            }
+        });
+      
 
-    // }
-    // var query = { 'email' : req.email };
-    // User.findOne(query)
-    console.log(req.body)
 })
 
 app.get('/api/paperdata', async (req, res) => {
@@ -181,7 +237,30 @@ app.get('/api/paperdata', async (req, res) => {
 	// res.json({status: "ok"})
 })
 
-
+app.post("/api/recently_access_papers",async(req,res)=>{
+    var recent_paper_content = await recent_paper.findOne({email : req.body.email});
+    if(recent_paper_content == null){
+        recent_paper.create({
+        email : req.body.email,
+        rc_paper : [req.body.event]
+        // cpassword : req.body.cpassword
+            
+        },function(err,newu)
+        {
+            if(err)
+            {
+                console.log('paper added');
+                return res.json({status : 'error'})
+            }
+            // this.context.router.transitionTo("/login");
+            // res.redirect('http://localhost:3000/login')
+            console.log("paper added : ");
+            return res.json({status : 'success'})
+            //window.location.href('./api/login')
+        });
+    }
+})
 app.listen(1337,() => {
     console.log("server started on 1337")
 }) 
+

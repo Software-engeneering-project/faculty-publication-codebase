@@ -2,6 +2,7 @@
 
 import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../css/Register.css'
 
 
 function Register() {
@@ -46,14 +47,16 @@ function Register() {
 
   }
   return (
-    <div className = "container--form">
-       <form className = "form register--form" onSubmit = {registerUser} action = 'Login'>
-      <h1 className = "heading">Register</h1>
-      <label className = "label">EMAIL</label>
+
+    <div className="body-register">
+      <div className = "container--form-register">
+       <form className = "form-register" onSubmit = {registerUser} action = 'Login'>
+      <h1 className = "heading-register">Register</h1>
+      <label className = "label-register">Name</label>
         <input className = "field" type = "text" placeholder = "Name" value = {name} onChange = {(e) => SetName(e.target.value)} />
-        <label className = "label">EMAIL</label>
+        <label className = "label">Email</label>
         <input className = "field" type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
-        <label className = "label">EMAIL</label>
+        <label className = "label">Password</label>
         <input className = "field" type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
         <select value = {user_type} onChange = {(e) => SetuserType(e.target.value)}>
                         <option value = "F" >Faculty</option>
@@ -64,6 +67,8 @@ function Register() {
         <input className = "butt" type = "submit" value = "Submit" />
       </form>
     </div>
+    </div>
+    
   );
 }
 

@@ -43,22 +43,56 @@
 import React from "react";
 import "../css/Navbar.css"
 import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
-function Navbar(props) {
+
+var student_details = JSON.parse(localStorage.getItem("details"));
+// console.log(student_details)
+// console.log(student_details.name)
+
+
+
+
+function Navbar() {
+
+    // function Facultyuploadfun(){
+    //     const navigate = useNavigate();
+    //     navigate('/upload')
+    // }
+    
+
+    function resetuser() {
+        localStorage.clear();
+    }
+
     return <div className="Navbar">
         <div className="leftSide">
             <a href="/filter">Home</a>
         </div>
         <div className="rightSide">
             <input type="text" placeholder="Search Paper" />
-            <button>Search</button>
+            <button className = "search-btn">Search</button>
+          
             <Link
                 to="/"
                 style={{
                     color: 'white',
                 }}>
 
-                <button>{(props.islogged == 0) ? "logout" : "login"}</button>
+            <div className="dropdown search-btn">
+                    <button className="dropbtn">Account</button>
+                    <div className="dropdown-content">
+                        <a href="#">Profile</a>
+                    <Link
+                        to="/"
+                        style={{
+                            color: 'white',
+                        }}>
+                        <button className = "nav-dropdown" onClick={resetuser}>{(student_details.islogged== 1) ? "logout" : "login"}</button>
+                     </Link>
+                    </div>
+                </div>
 
             </Link>
         </div>

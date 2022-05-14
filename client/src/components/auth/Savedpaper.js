@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 function Savedpaper(){
     const [paperList, setPaperDetails] = useState([])
     async function getsaved_papers(){
@@ -21,7 +22,12 @@ function Savedpaper(){
         getsaved_papers()
     }, []);
     console.log(paperList)
-    return(<></>)
+
+        return (
+            <div>
+                <h1>Hello</h1>
+            </div>
+        )
 }
 
 export default Savedpaper

@@ -3,22 +3,10 @@
 import { useEffect, useState, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import Display from './display';
-import Papers from "./temp_data";
 import "./../css/home.css"
 import Navbar from './navbar'
 
-const inputStyle = {
-  marginLeft: '50%',
-  padding: '30px'
-}
-
-
-const reset  = {
-  pointerEvents: 'none',
-  padding : '10px',
-  backgroundColor: '#557B83',
-  width : '30%'
-}
+// const jwt = require('jsonwebtoken')
 
 function Filter() {
 
@@ -34,7 +22,7 @@ function Filter() {
   const [listItems, setlistItems] = useState([])
   const [details, setDetails] = useState([])
   const navigate = useNavigate();
-  const [myRows, setMyRows] = useState([]);
+  const [myRows, setMyRows] = useState([])
 
 function handlereset() {
   setArea("none");
@@ -46,8 +34,23 @@ function handlereset() {
   setypep("none")
 }
 
-  const calculation = useMemo(() => { }, [myRows]);
+const calculation = useMemo(() => { }, [myRows]);
 
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token')
+  //   if(token){
+  //     const user = jwt.decode(token)
+  //     if(!user) { 
+  //       localStorage.removeItem('token')
+  //       navigate('/')
+  //     }
+  //     else{
+  //       navigate('/filter/0')
+  //     } 
+
+  //   }
+  // })
 
 
   useEffect(() => {
@@ -145,14 +148,12 @@ function handlereset() {
 
       <div className='wrapper--right'>
       {myRows.length > 0 && <Display citation = {citation} patent = {patent} privat = {privat} myRows={myRows} />}
-        
       </div>
     </div>
     </>
-    
-
-
   );
 }
 
 export default Filter;
+
+

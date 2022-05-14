@@ -1,11 +1,16 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+
 const mongoose = require('mongoose')
 const User = require('./models/user_model')
 const Paper = require('./models/paper_model')
+const jwt = require('jsonwebtoken')
+const { urlencoded } = require('express')
 app.use(cors())
 app.use(express.json())
+
+
 
 // mongoose.connect('mongodb://localhost:27017/practice')
 console.log('Connecting to', "mongodb://localhost:27017/practice")
@@ -77,14 +82,22 @@ mongoose.connect('mongodb://localhost:27017/practice', { useNewUrlParser: true, 
         console.log(req.body)
         
             const user = await User.findOne({
-                email : req.body.email
+                email : req.body.email,
             })
             console.log(user.password)
             
-            if(user.password == req.body.password)
+            if(user.password === req.body.password)
             {
+            
+                const token = jwt.sign(
+                    {
+                        email : user.email,
+                    },
+                    'secret123'
+                )
+
                 console.log("correct Password")
-                return res.json({status : 'ok'})
+                return res.json({status : 'ok' , user : token})
     
             }
             else{
@@ -127,13 +140,13 @@ app.post('/api/register',async(req,res) => {
             
             //  res.redirect('Login')
 })
-app.post('/api/login',async(req,res) => {
-    console.log(req.body)
-})
+// app.post('/api/login',async(req,res) => {
+//     console.log(req.body)
+// })
 app.post('/api/forgotpassword',async(req,res) => {
     // try{
-        console.log(req.body)
-        var user = await User.find({email : req.body.email});
+        console.log(req.body )
+        var user = await User.findOne({email : req.body.email});
         console.log(user)
         if(!user){
             return res.status(400).json({status : 'user not found'})
@@ -148,7 +161,6 @@ app.post('/api/forgotpassword',async(req,res) => {
         .catch(err => {
             return res.status(400).json({status : 'Error'})
         })
-
 
 
     // }
@@ -185,3 +197,4 @@ app.get('/api/paperdata', async (req, res) => {
 app.listen(1337,() => {
     console.log("server started on 1337")
 }) 
+

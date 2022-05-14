@@ -6,8 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import '../css/Login.css'
 
 
-
-
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -30,16 +28,29 @@ function Login() {
     const data = await response.json()
     console.log(data)
 
-    if(data.status === 'ok'){
+    // if(data.user){
+      
+    // }
+
+    if(data.user){
       alert('Login successfull')
+      localStorage.setItem('token' ,data.user)
       navigate('/filter/0');
     }
+
+    // if(data.status === 'ok'){
+    //   alert('Login successfull')
+    //   navigate('/filter/0');
+    // }
     else{
         alert('Invalid Crednetials')
     }
 
   }
   return (
+
+
+
     <div className = "container" >
      
       <form className = "form" onSubmit = {loginUser}>

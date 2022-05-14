@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Tagsinput from './tagsinput'
 
+import '../css/tagsinput.css'
 
 function Upload() {
     const [email, setEmail] = useState('')
@@ -61,7 +63,6 @@ function Upload() {
         else {
             alert('Invalid Form details')
         }
-
     }
     return (
         <div className="upload--container">
@@ -112,6 +113,8 @@ function Upload() {
                         <option value="Others">Others</option>
                     </select><br />
                     <textarea placeholder="Abstract" value={abstract} onChange={(e) => setAbstract(e.target.value)} /><br />
+
+                    <Tagsinput />
                     <input type="submit" value="Upload" /><br />
                 </div>
 

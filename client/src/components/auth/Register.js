@@ -14,9 +14,6 @@ function Register() {
   async function registerUser(event)
   {
     event.preventDefault();
-    
-    
-
     const response = await fetch("http://localhost:1337/api/register",{
       method: "POST",
       headers:{
@@ -49,11 +46,11 @@ function Register() {
     <div className = "container--form">
        <form className = "form register--form" onSubmit = {registerUser} action = 'Login'>
       <h1 className = "heading">Register</h1>
-      <label className = "label">EMAIL</label>
+      <label className = "label">Name</label>
         <input className = "field" type = "text" placeholder = "Name" value = {name} onChange = {(e) => SetName(e.target.value)} />
-        <label className = "label">EMAIL</label>
+        <label className = "label">Email</label>
         <input className = "field" type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
-        <label className = "label">EMAIL</label>
+        <label className = "label">Password</label>
         <input className = "field" type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
         <select value = {user_type} onChange = {(e) => SetuserType(e.target.value)}>
                         <option value = "F" >Faculty</option>

@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
-<<<<<<< HEAD
 import '../css/savedpaper.css'
-=======
->>>>>>> 2fd75ca2698d6577e11f4cc8fdf87b6f326060a6
 
 function Savedpaper(){
     const [paperList, setPaperDetails] = useState([])
@@ -26,7 +23,6 @@ function Savedpaper(){
         getsaved_papers()
     }, []);
     console.log(paperList)
-<<<<<<< HEAD
     if (paperList.length === 0) {
         return (
 
@@ -66,14 +62,6 @@ function Savedpaper(){
         </>)
     }
     
-=======
-
-        return (
-            <div>
-                <h1>Hello</h1>
-            </div>
-        )
->>>>>>> 2fd75ca2698d6577e11f4cc8fdf87b6f326060a6
 }
 
 export default Savedpaper

@@ -19,6 +19,8 @@ import Provide_request from "./components/auth/Provide_request"
 import Recently_Access_Papers from "./components/auth/recently_access_papers"
 import Admin from "./components/auth/admin"
 
+import Profile from "./components/auth/profile";
+
 const App = () => {
 
   return (
@@ -38,6 +40,7 @@ const App = () => {
           <Route path = "/recently_access_papers" element = {<Recently_Access_Papers/>}/>
           <Route path = "/provide_request" element = {<Provide_request/>}/>
           <Route path = "/admin" element = {<Admin/>}/>
+          <Route path = 'profile' element = {<Profile />} />
         </Routes>
       </BrowserRouter>
     </div>

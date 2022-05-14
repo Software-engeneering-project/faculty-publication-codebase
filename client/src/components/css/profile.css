@@ -1,0 +1,16 @@
+.profile-container{
+    display: flex;
+    min-height: 100vh;
+}
+
+.profile-left{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    min-height: 100%;
+}
+
+.profile-right{
+    width: 50%;
+}
+

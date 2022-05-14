@@ -1,6 +1,10 @@
 import { useEffect, useState, useMemo } from 'react'
 
-import { useNavigate, useParams } from 'react-router-dom';
+import '../css/recently_accessed.css'
+
+
+
+
 function Recently_access_papers(){
     const [paperList, setPaperDetails] = useState([])
     async function getrecent_papers(){
@@ -16,6 +20,7 @@ function Recently_access_papers(){
             }),
             })
             const data = await response.json()
+            console.log(data.paper_data)
             setPaperDetails(data.paper_data)
         }
     
@@ -32,17 +37,45 @@ function Recently_access_papers(){
     // console.log(paperList,componentList)
 
 
-    return(<ul> 
-        {/* {paperList.length > 0 && componentList} */}
-        {
-            paperList.map((paper,idx) => {
-                return <li key={idx}>
-                    <h6> {paper.ptitle}</h6>
-                </li>
-            })
-        }
+    if (paperList.length === 0) {
+        return (
 
-    </ul>)
+            <>
+                <br/>
+                <h2>Recently Accessed</h2>
+                {/* <hr className='hori-line'></hr> */}
+                <h5>No Recently Accessed Papers</h5>
+            </>
+            
+           
+        )
+    }
+
+    else{
+        return(<> 
+            {/* {paperList.length > 0 && componentList} */}
+            <br/>
+            <h2>Recently Accessed</h2>
+            <hr className='hori-line'></hr>
+           
+            {
+                paperList.map((paper,idx) => {
+                    return <div key={idx} className = 'recent-card'>
+                        <div className='recent-card-left'>
+                        <h5 className='paper-title'> {paper.ptitle}</h5>  
+                        <h6 className='paper-details'>{paper.author} - {paper.year} - {paper.issuedby} - {paper.DOI}</h6>
+                        </div>
+                        <div className = 'recent-card-right'>
+                           <a href= {paper.paperlink}> <button className='linkbut'>PDF</button></a> 
+                        </div>
+
+                        
+                    </div>
+                })
+            }
+        </>)
+    }
 }
 
 export default Recently_access_papers
+

@@ -311,7 +311,7 @@ app.post("/api/get_recently_access_papers",async(req,res)=>{
 
     }
     else{
-        return res.json({paper_data : "No papers are accessed recently"})
+        return res.json({paper_data : []})
     }
 })
 app.post("/api/sendrequest",async(req,res) =>{

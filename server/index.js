@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const User = require('./models/user_model')
 const Paper = require('./models/paper_model')
 const recent_paper = require("./models/recentlyadded")
+const request_papers = require("./models/request_papers")
 app.use(cors())
 app.use(express.json())
 
@@ -237,12 +238,18 @@ app.get('/api/paperdata', async (req, res) => {
 	// res.json({status: "ok"})
 })
 
-app.post("/api/recently_access_papers",async(req,res)=>{
+app.post("/api/update_recently_access_papers",async(req,res)=>{
+    console.log(req.body)
     var recent_paper_content = await recent_paper.findOne({email : req.body.email});
+    
     if(recent_paper_content == null){
+        var temp = [req.body.event]
         recent_paper.create({
         email : req.body.email,
-        rc_paper : [req.body.event]
+        // $push :{
+        //     doi : req.body.event
+        // }
+        doi : temp
         // cpassword : req.body.cpassword
             
         },function(err,newu)
@@ -259,6 +266,88 @@ app.post("/api/recently_access_papers",async(req,res)=>{
             //window.location.href('./api/login')
         });
     }
+    else{
+        var temp = recent_paper_content.doi
+        if (temp.filter(s => s == req.body.event).length == 0)
+        {
+            if(temp.length < 5){
+                temp.push(req.body.event)
+            }
+            else{
+                temp.shift()
+                temp.push(req.body.event)
+            }
+            var nuser = {_id : recent_paper_content._id,email : req.body.email,doi : temp}
+        recent_paper.findByIdAndUpdate({ _id: nuser._id }, nuser, { new: true }, (err, doc) => {
+            if (!err) { 
+                // console.log("doi updated successfully")
+                return res.json({status : 'success'}); }
+            else {
+                return res.json({status : 'error'});
+            }
+        });
+        }
+        
+        console.log(recent_paper_content)
+    }
+})
+
+app.post("/api/get_recently_access_papers",async(req,res)=>{
+    var recent_paper_content = await recent_paper.findOne({email : req.body.email});
+    if(recent_paper_content != null){
+        var temp = recent_paper_content.doi
+        // console.log(temp);
+        var paper_data = []
+        for(let i = temp.length - 1 ; i >=0 ; i--){
+            var t = await Paper.findOne({DOI : temp[i]});
+            console.log(t.DOI)
+            paper_data.push(t)
+        }
+        // for (let i in temp){
+        //     console.log(temp[i])
+        // }
+        return res.json({paper_data: paper_data})
+        
+
+    }
+    else{
+        return res.json({paper_data : "No papers are accessed recently"})
+    }
+})
+app.post("/api/sendrequest",async(req,res) =>{
+    request_papers.create({
+        email : req.body.email,
+        DOI : req.body.DOI,
+        reason : req.body.reason
+            
+        },function(err,newu)
+        {
+            if(err)
+            {
+                console.log('request not sent');
+                return res.json({status : 'error'})
+            }
+            // this.context.router.transitionTo("/login");
+            // res.redirect('http://localhost:3000/login')
+            console.log("request sent : ",newu);
+            return res.json({status : 'success'})
+            //window.location.href('./api/login')
+        });
+})
+app.post("/api/fetchrequestpapers",async(req,res) =>{
+    try{
+        paperData = await request_papers.find({}, )
+        if (paperData.length > 0){
+            return res.json({status : paperData})
+        }
+        else{
+            return res.json({status : "You have responded all requests"})
+        }
+    }
+    catch(e){
+        return res.json({status : "error"})
+    }
+    
 })
 app.listen(1337,() => {
     console.log("server started on 1337")

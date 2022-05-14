@@ -66,6 +66,16 @@ function Login() {
           localStorage.setItem('details',JSON.stringify(details))
           navigate('/Filter')
         }
+        else if(details.user_type === 'P'){
+          details.islogged = 1;
+          localStorage.setItem('details',JSON.stringify(details))
+          navigate("/Filter_public")
+        }
+        else if(details.user_type === "A"){
+          details.islogged = 1;
+          localStorage.setItem('details',JSON.stringify(details))
+          navigate("/Admin")
+        }
     })
 
 
@@ -89,8 +99,6 @@ function Login() {
         // console.log(ciphertext);
         
      
-      
-
     }
     else{
         alert('Invalid Crednetials')

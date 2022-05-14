@@ -3,10 +3,12 @@ import "../css/facultynavbar.css"
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
-var faculty_details = JSON.parse(localStorage.getItem("details"));
 
 
 function FacultyNavbar(props) {
+
+    var faculty_details = JSON.parse(localStorage.getItem("details"));
+
     const navigate = useNavigate();
     function uploadredirect(){
         navigate('/upload');
@@ -23,9 +25,8 @@ function FacultyNavbar(props) {
         <div className="rightSide">
             <input type="text" placeholder="Search Paper" />
             <button className = "search-btn">Search</button>
-            <button onClick={uploadredirect} className="upload-btn">Upload</button> 
-            
- 
+
+            { (faculty_details.user_type === 'S' || faculty_details.user_type === 'P') ? <></> :  <button onClick={uploadredirect} className="upload-btn">Upload</button>  } 
                 <div className="dropdown search-btn">
                     <button className="dropbtn">Hi {faculty_details.name}</button>
                     <div className="dropdown-content">
@@ -35,7 +36,7 @@ function FacultyNavbar(props) {
                         style={{
                             color: 'white',
                         }}>
-                        <button className = "nav-dropdown" onClick={resetuser}>{(faculty_details.islogged== 1) ? "logout" : "login"}</button>
+                        <button className = "nav-dropdown" onClick={resetuser}>{(faculty_details.islogged) ? "logout" : "login"}</button>
                     </Link>
                     </div>
                 </div>

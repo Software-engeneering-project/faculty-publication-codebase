@@ -62,6 +62,7 @@ function Register() {
                         <option value = "F" >Faculty</option>
                         <option value = "S">Student</option>
                         <option value = "P">Public</option>
+                        <option value = "A">Admin</option>
                     </select>
         {/* <input type = "password" placeholder = "Confirm Password" value = {cpassword} onChange = {(e) => setPassword(e.target.value)}/> */}
         <input className = "butt" type = "submit" value = "Submit" />

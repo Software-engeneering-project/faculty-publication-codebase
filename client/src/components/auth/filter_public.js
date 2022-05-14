@@ -22,7 +22,7 @@ const reset  = {
   width : '30%'
 }
 
-function Filter() {
+function Filter_public() {
 
   let {islogged} = useParams();
   // var _ciphertext = CryptoAES.decrypt(islogged.toString(), 'secret key 123');
@@ -167,4 +167,4 @@ function handlereset() {
   );
 }
 
-export default Filter;
+export default Filter_public;

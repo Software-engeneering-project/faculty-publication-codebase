@@ -1,9 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 const Display = (props)=>{
     // console.log(props.myRows)
+    const navigate = useNavigate();
     var details = JSON.parse(localStorage.getItem("details"));
     const email = details.email;
     async function recently_access_papers(event){
-        event.preventDefault();
         const response = await fetch("http://localhost:1337/api/update_recently_access_papers",{
         method: "POST",
         headers:{
@@ -14,6 +15,13 @@ const Display = (props)=>{
             event 
         }),
         })
+    }
+    
+    function request(p){
+    
+        details.DOI = p;   
+        localStorage.setItem('details',JSON.stringify(details))
+        navigate('/Provide_request')
     }
     var componentList = props.myRows.map(paper => 
             <div key = {paper._id} className= "paper--card" >  
@@ -27,7 +35,7 @@ const Display = (props)=>{
                  */}
                 <div className="heading--container">
                 <h4>{paper.ptitle} </h4>
-                <a href={paper.paperlink} onClick={recently_access_papers(paper.DOI)}>[PDF]</a>
+                { (details.user_type == "P" && paper.privat == "Yes") ?  (<button onClick={()=>{request(paper.DOI)}}>request</button>)  :  (   <a href={paper.paperlink} onClick={()=>{recently_access_papers(paper.DOI)}}>[PDF]</a>)}
                 </div>
                 <div className = "content--container">
                     <h6>{paper.author} - {paper.year} - {paper.issuedby} - {paper.DOI}</h6>

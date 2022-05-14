@@ -136,7 +136,6 @@ function handlereset() {
   return (
     <>
       <FacultyNavbar islogged = {islogged}/>
-
       <div className='wrapper'>
       <div className='wrapper--left'>
         <form className='filter--container'>

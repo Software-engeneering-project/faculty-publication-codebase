@@ -1,4 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import '../css/display.css'
+
 const Display = (props)=>{
     // console.log(props.myRows)
     const navigate = useNavigate();
@@ -57,9 +61,9 @@ const Display = (props)=>{
                 <div className="heading--container">
                 <h4>{paper.ptitle} </h4>
                 { (details.user_type == "P" && paper.privat == "Yes") ?  (<button onClick={()=>{request(paper.DOI)}}>request</button>)  :  
-                (   <div>
-                    <a href={paper.paperlink} onClick={()=>{recently_access_papers(paper.DOI)}}>[PDF]</a>
-                    <button onClick = {() => {savepaper(paper.DOI)}}>Save paper</button>
+                (   <div className='paperlinkbtn'>
+                    <a className = 'pdflinkbtn' href={paper.paperlink} onClick={()=>{recently_access_papers(paper.DOI)}}>[PDF]</a>
+                    <button className='savebtn' onClick = {() => {savepaper(paper.DOI)}}>SAVE</button>
                     </div>  
                 )}
                 </div>

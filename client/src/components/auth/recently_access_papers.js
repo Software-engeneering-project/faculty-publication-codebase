@@ -42,9 +42,9 @@ function Recently_access_papers(){
 
             <>
                 <br/>
-                <h2>Recently Accessed</h2>
+                <h2 className='recent-header'>Recently Accessed</h2>
                 {/* <hr className='hori-line'></hr> */}
-                <h5>No Recently Accessed Papers</h5>
+                <h5 className='recent-empty-res'>No Recently Accessed Papers</h5>
             </>
             
            
@@ -55,9 +55,8 @@ function Recently_access_papers(){
         return(<> 
             {/* {paperList.length > 0 && componentList} */}
             <br/>
-            <h2>Recently Accessed</h2>
+            <h2 className='recent-header'>Recently Accessed</h2>
             <hr className='hori-line'></hr>
-           
             {
                 paperList.map((paper,idx) => {
                     return <div key={idx} className = 'recent-card'>

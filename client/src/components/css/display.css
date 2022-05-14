@@ -1,0 +1,22 @@
+.paperlinkbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.savebtn{
+    border: none;
+    background-color: #021E39;
+    color: aliceblue;
+    padding: 10px;
+    border-radius: 5px;
+    -webkit-box-shadow: 10px 10px 5px -18px rgba(0,0,0,0.47);
+    -moz-box-shadow: 10px 10px 5px -18px rgba(0,0,0,0.47);
+    box-shadow: 10px 10px 5px -18px rgba(0,0,0,0.47);
+}
+
+
+.pdflinkbtn{
+    text-decoration: none;
+}

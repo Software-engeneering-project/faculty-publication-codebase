@@ -6,8 +6,6 @@ import Display from './display';
 import Papers from "./temp_data";
 import "./../css/home.css"
 import FacultyNavbar from './faculty_navbar'
-import CryptoAES from 'crypto-js/aes';
-import CryptoENC from 'crypto-js/enc-utf8';
 
 
 const inputStyle = {
@@ -169,7 +167,8 @@ function handlereset() {
             <input type='checkbox' id="p3" value={privat} onChange={(e) => { setPrivat(!privat) }} />
             <label>Include Private Papers</label>
           </div>
-          <a onClick={handlereset}  >reset</a>
+          <br/>
+          <a onClick={handlereset}  className='reset-filter' >RESET</a>
         </form>
       </div>
 

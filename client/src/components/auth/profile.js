@@ -1,10 +1,12 @@
 
 import Profilecard from './profilecard' 
 import Recently_access_papers from './recently_access_papers';
+import Savedpaper from './Savedpaper';
 
 import '../css/profile.css'
 import '../css/profilecard.css'
 import '../css/recently_accessed.css'
+
 
 function Profile() {
         return (
@@ -16,7 +18,7 @@ function Profile() {
                     <Recently_access_papers />
                 </div>
                 <div className='profile-right'>
-                    <h4>My Saved Papers</h4>
+                    <Savedpaper />
                 </div>
                
             </div>

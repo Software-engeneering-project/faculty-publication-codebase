@@ -38,7 +38,7 @@
     color: black;
 }
 
-.rightSide button{
+.search-btn{
     height: 32px;
     width: 70px;
     font-size: 16px;
@@ -46,6 +46,22 @@
      border-radius: 4px;
      margin-left: 10px;
 }
+
+.upload-btn{
+    height: 32px;
+    width: 70px;
+    font-size: 16px;
+     border: none;
+     border-radius: 4px;
+     margin-left: 10px;
+}
+
+
 button:hover{
     cursor: pointer;
 }
+
+.upload{
+    padding:15px
+}
+

@@ -3,14 +3,26 @@
 import { useEffect, useState, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import Display from './display';
+import Papers from "./temp_data";
 import "./../css/home.css"
 import FacultyNavbar from './faculty_navbar'
 import CryptoAES from 'crypto-js/aes';
 import CryptoENC from 'crypto-js/enc-utf8';
 
-// const jwt = require('jsonwebtoken')
+const inputStyle = {
+  marginLeft: '50%',
+  padding: '30px'
+}
 
-function Filter() {
+
+const reset  = {
+  pointerEvents: 'none',
+  padding : '10px',
+  backgroundColor: '#557B83',
+  width : '30%'
+}
+
+function Filter_public() {
 
   let {islogged} = useParams();
   // var _ciphertext = CryptoAES.decrypt(islogged.toString(), 'secret key 123');
@@ -31,7 +43,7 @@ function Filter() {
   const [listItems, setlistItems] = useState([])
   const [details, setDetails] = useState([])
   const navigate = useNavigate();
-  const [myRows, setMyRows] = useState([])
+  const [myRows, setMyRows] = useState([]);
 
 function handlereset() {
   setArea("none");
@@ -43,23 +55,8 @@ function handlereset() {
   setypep("none")
 }
 
-const calculation = useMemo(() => { }, [myRows]);
+  const calculation = useMemo(() => { }, [myRows]);
 
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   if(token){
-  //     const user = jwt.decode(token)
-  //     if(!user) { 
-  //       localStorage.removeItem('token')
-  //       navigate('/')
-  //     }
-  //     else{
-  //       navigate('/filter/0')
-  //     } 
-
-  //   }
-  // })
 
 
   useEffect(() => {
@@ -160,12 +157,14 @@ const calculation = useMemo(() => { }, [myRows]);
 
       <div className='wrapper--right'>
       {myRows.length > 0 && <Display citation = {citation} patent = {patent} privat = {privat} myRows={myRows} />}
+        
       </div>
     </div>
     </>
+    
+
+
   );
 }
 
-export default Filter;
-
-
+export default Filter_public;

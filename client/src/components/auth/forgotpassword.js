@@ -10,6 +10,7 @@ function Forgotpassword(){
   const [email, setEmail] = useState('')
   const navigate = useNavigate();
 
+
   async function fgpassw(event)
   {
     event.preventDefault()
@@ -27,9 +28,9 @@ function Forgotpassword(){
     const data = await response.json()
     console.log(data)
 
-    if(data.status === 'ok'){
+    if(data.status === 'success'){
       alert('Update successfull')
-      navigate('/Login');
+      navigate('/');
     }
     else{
         alert('Invalid Password')

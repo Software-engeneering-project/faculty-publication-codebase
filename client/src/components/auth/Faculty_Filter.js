@@ -3,23 +3,51 @@
 import { useEffect, useState, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import Display from './display';
+import Papers from "./temp_data";
 import "./../css/home.css"
 import FacultyNavbar from './faculty_navbar'
 import CryptoAES from 'crypto-js/aes';
 import CryptoENC from 'crypto-js/enc-utf8';
 
-// const jwt = require('jsonwebtoken')
 
-function Filter() {
+const inputStyle = {
+  marginLeft: '50%',
+  padding: '30px'
+}
 
-  let {islogged} = useParams();
-  // var _ciphertext = CryptoAES.decrypt(islogged.toString(), 'secret key 123');
-  // console.log(_ciphertext.toString(CryptoENC));
+
+const uploadbutn = {
+  padding : '15px'
+}
+
+const reset  = {
+  pointerEvents: 'none',
+  padding : '10px',
+  backgroundColor: '#557B83',
+  width : '30%'
+}
+
+function Faculty_Filter() {
+
+  // const {id} = route.params;
+
+  // console.log(id)
+let {islogged} = useParams();
+
+var faculty_details = JSON.parse(localStorage.getItem("details"));
+console.log(faculty_details)
+console.log(faculty_details.name)
+
+
+  // useEffect(() => {
+  //   var _ciphertext = CryptoAES.decrypt(islogged.toString(), 'secret key 123');
+  //     console.log(_ciphertext.toString(CryptoENC));
   // let s = islogged.split(",")
   // console.log(s)
-
-  var student_details = localStorage.getItem("details");
-  console.log(student_details)
+  // })
+  
+  var user_details = localStorage.getItem("details");
+  console.log(user_details)
 
   const [area, setArea] = useState('none')
   const [issuedby, setIssueby] = useState('none')
@@ -30,8 +58,9 @@ function Filter() {
   const [typep, setypep] = useState("none")
   const [listItems, setlistItems] = useState([])
   const [details, setDetails] = useState([])
-  const navigate = useNavigate();
-  const [myRows, setMyRows] = useState([])
+  // const navigate = useNavigate();
+  const [myRows, setMyRows] = useState([]);
+  
 
 function handlereset() {
   setArea("none");
@@ -43,24 +72,7 @@ function handlereset() {
   setypep("none")
 }
 
-const calculation = useMemo(() => { }, [myRows]);
-
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token')
-  //   if(token){
-  //     const user = jwt.decode(token)
-  //     if(!user) { 
-  //       localStorage.removeItem('token')
-  //       navigate('/')
-  //     }
-  //     else{
-  //       navigate('/filter/0')
-  //     } 
-
-  //   }
-  // })
-
+  // const calculation = useMemo(() => { }, [myRows]);
 
   useEffect(() => {
 
@@ -105,6 +117,9 @@ const calculation = useMemo(() => { }, [myRows]);
   }, [area, issuedby, year, citation, patent, privat, details, typep]);
 
 
+  // function Facultyuploadfun(){
+  //   navigate('/upload')
+  // }
 
   const options = ["none",...new Set(details.map(details => details.area))];
 
@@ -120,7 +135,7 @@ const calculation = useMemo(() => { }, [myRows]);
 
   return (
     <>
-      <FacultyNavbar/>
+      <FacultyNavbar islogged = {islogged}/>
       <div className='wrapper'>
       <div className='wrapper--left'>
         <form className='filter--container'>
@@ -160,12 +175,14 @@ const calculation = useMemo(() => { }, [myRows]);
 
       <div className='wrapper--right'>
       {myRows.length > 0 && <Display citation = {citation} patent = {patent} privat = {privat} myRows={myRows} />}
+        
       </div>
     </div>
     </>
+    
+
+
   );
 }
 
-export default Filter;
-
-
+export default Faculty_Filter;

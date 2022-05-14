@@ -2,6 +2,7 @@
 
 import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../css/Register.css'
 
 
 function Register() {
@@ -43,10 +44,12 @@ function Register() {
 
   }
   return (
-    <div className = "container--form">
-       <form className = "form register--form" onSubmit = {registerUser} action = 'Login'>
-      <h1 className = "heading">Register</h1>
-      <label className = "label">Name</label>
+
+    <div className="body-register">
+      <div className = "container--form-register">
+       <form className = "form-register" onSubmit = {registerUser} action = 'Login'>
+      <h1 className = "heading-register">Register</h1>
+      <label className = "label-register">Name</label>
         <input className = "field" type = "text" placeholder = "Name" value = {name} onChange = {(e) => SetName(e.target.value)} />
         <label className = "label">Email</label>
         <input className = "field" type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
@@ -56,11 +59,14 @@ function Register() {
                         <option value = "F" >Faculty</option>
                         <option value = "S">Student</option>
                         <option value = "P">Public</option>
+                        <option value = "A">Admin</option>
                     </select>
         {/* <input type = "password" placeholder = "Confirm Password" value = {cpassword} onChange = {(e) => setPassword(e.target.value)}/> */}
         <input className = "butt" type = "submit" value = "Submit" />
       </form>
     </div>
+    </div>
+    
   );
 }
 

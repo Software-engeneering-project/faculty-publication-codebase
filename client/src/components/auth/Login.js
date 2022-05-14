@@ -32,7 +32,17 @@ function Login() {
   const [details, userDetails] = useState([])
 
   const navigate = useNavigate();
+  async function inc_co(){
+    const response = await fetch("http://localhost:1337/api/increase_count",{
+      method: "POST",
+      headers:{
+        "Content-Type" :"application/json",
+      },
+      body : JSON.stringify({
 
+      }),
+    })
+  }
   async function loginUser(event)
   {
     event.preventDefault()
@@ -56,6 +66,7 @@ function Login() {
 
       await getuser(email,password).then( data => {
         userDetails(data);
+            
         if(details.user_type === 'F') {
           details.islogged = 1;
           localStorage.setItem('details',JSON.stringify(details))
@@ -77,7 +88,6 @@ function Login() {
           navigate("/Admin")
         }
     })
-
 
       // console.log("++++++++++")
     // .then(data=>{
@@ -110,6 +120,7 @@ function Login() {
     }
 
   }
+    
   return (
 
 
@@ -123,7 +134,7 @@ function Login() {
         <label className = "label">PASSWORD</label>
         <input className = "field"  type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
      
-        <input className = "butt" type = "submit" value = "Login" />
+        <input className = "butt" type = "submit" value = "Login" onClick={()=>{inc_co()}} />
 
         <p className='bottom-cont'>New here? <Link
                 to="/register"
@@ -135,7 +146,7 @@ function Login() {
                 to="/filter/1"
                 style={{
                     color: 'black',
-                }}>Skip and Visit</Link>
+                }} onClick={()=>{inc_co()}}>Skip and Visit</Link>
             </p>
       </form>
     </div>

@@ -16,7 +16,28 @@ const Display = (props)=>{
         }),
         })
     }
-    
+    async function savepaper(event){
+        console.log("inside api")
+        var response = await fetch("http://localhost:1337/api/update_saved_papers",{
+        method: "POST",
+        headers:{
+            "Content-Type" :"application/json",
+        },
+        body : JSON.stringify({
+            email,
+            event 
+        }),
+        })
+        response = await response.json()
+        console.log(response)
+        if (response.status == "success"){
+            alert("paper saved")
+        }
+        else if(response.status == "Already paper saved"){
+            alert("Paper already saved")
+        }
+
+    }
     function request(p){
     
         details.DOI = p;   
@@ -35,7 +56,12 @@ const Display = (props)=>{
                  */}
                 <div className="heading--container">
                 <h4>{paper.ptitle} </h4>
-                { (details.user_type == "P" && paper.privat == "Yes") ?  (<button onClick={()=>{request(paper.DOI)}}>request</button>)  :  (   <a href={paper.paperlink} onClick={()=>{recently_access_papers(paper.DOI)}}>[PDF]</a>)}
+                { (details.user_type == "P" && paper.privat == "Yes") ?  (<button onClick={()=>{request(paper.DOI)}}>request</button>)  :  
+                (   <div>
+                    <a href={paper.paperlink} onClick={()=>{recently_access_papers(paper.DOI)}}>[PDF]</a>
+                    <button onClick = {() => {savepaper(paper.DOI)}}>Save paper</button>
+                    </div>  
+                )}
                 </div>
                 <div className = "content--container">
                     <h6>{paper.author} - {paper.year} - {paper.issuedby} - {paper.DOI}</h6>

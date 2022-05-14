@@ -17,6 +17,7 @@ import Filter_public from "./components/auth/filter_public"
 import FacultyDashboard from "./components/auth/FacultyDashboard"
 import Provide_request from "./components/auth/Provide_request"
 import Recently_Access_Papers from "./components/auth/recently_access_papers"
+import Saved_papers from "./components/auth/Savedpaper"
 import Admin from "./components/auth/admin"
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="/filter_public" element = {<Filter_public />}/>
           <Route path = "/recently_access_papers" element = {<Recently_Access_Papers/>}/>
           <Route path = "/provide_request" element = {<Provide_request/>}/>
+          <Route path = "/saved_papers" element = {<Saved_papers/>}/>
           <Route path = "/admin" element = {<Admin/>}/>
         </Routes>
       </BrowserRouter>

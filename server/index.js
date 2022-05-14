@@ -7,6 +7,7 @@ const User = require('./models/user_model')
 const Paper = require('./models/paper_model')
 const recent_paper = require("./models/recentlyadded")
 const request_papers = require("./models/request_papers")
+const saved_papers = require("./models/saved_paper")
 app.use(cors())
 app.use(express.json())
 
@@ -292,6 +293,49 @@ app.post("/api/update_recently_access_papers",async(req,res)=>{
     }
 })
 
+app.post("/api/update_saved_papers",async(req,res)=>{
+    var saved_paper_content = await saved_papers.findOne({email : req.body.email});
+    
+    if(saved_paper_content == null){
+        var temp = [req.body.event]
+        saved_papers.create({
+        email : req.body.email,
+        doi : temp
+            
+        },function(err,newu)
+        {
+            if(err)
+            {
+                console.log('paper not saved');
+                return res.json({status : 'error'})
+            }
+            console.log("paper saved : ");
+            return res.json({status : 'success'})
+        });
+    }
+    else{
+        var temp = saved_paper_content.doi
+        if (temp.filter(s => s == req.body.event).length == 0)
+        {
+            temp.push(req.body.event)
+            var nuser = {_id : saved_paper_content._id,email : req.body.email,doi : temp}
+        saved_papers.findByIdAndUpdate({ _id: nuser._id }, nuser, { new: true }, (err, doc) => {
+            if (!err) { 
+                return res.json({status : 'success'}); }
+            else {
+                return res.json({status : 'error'});
+            }
+        });
+        }
+        else{
+            return res.json({status : 'Already paper saved'});
+        }
+        
+        // console.log(saved_paper_content)
+    }
+})
+
+
 app.post("/api/get_recently_access_papers",async(req,res)=>{
     var recent_paper_content = await recent_paper.findOne({email : req.body.email});
     if(recent_paper_content != null){
@@ -301,6 +345,27 @@ app.post("/api/get_recently_access_papers",async(req,res)=>{
         for(let i = temp.length - 1 ; i >=0 ; i--){
             var t = await Paper.findOne({DOI : temp[i]});
             console.log(t.DOI)
+            paper_data.push(t)
+        }
+        // for (let i in temp){
+        //     console.log(temp[i])
+        // }
+        return res.json({paper_data: paper_data})
+        
+
+    }
+    else{
+        return res.json({paper_data : "No papers are accessed recently"})
+    }
+})
+app.post("/api/get_saved_papers",async(req,res)=>{
+    var saved_paper_content = await saved_papers.findOne({email : req.body.email});
+    if(saved_paper_content != null){
+        var temp = saved_paper_content.doi
+        // console.log(temp);
+        var paper_data = []
+        for(let i = 0;i<temp.length;i++){
+            var t = await Paper.findOne({DOI : temp[i]});
             paper_data.push(t)
         }
         // for (let i in temp){

@@ -100,12 +100,20 @@ function Login() {
         
      
     }
+
+    // if(data.status === 'ok'){
+    //   alert('Login successfull')
+    //   navigate('/filter/0');
+    // }
     else{
         alert('Invalid Crednetials')
     }
 
   }
   return (
+
+
+
     <div className = "container" >
      {console.log(`Detials: ${details}`)}
       <form className = "form" onSubmit = {loginUser}>

@@ -2,6 +2,8 @@ import {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
+import '../css/forgotpassword.css'
+
 function Forgotpassword(){
     const [password, setPassword] = useState('')
   const [cpassword, setcPassword] = useState('')
@@ -37,7 +39,7 @@ function Forgotpassword(){
   }
 
   return (
-      <div>
+      <div className='form-forgot-password'>
       <form onSubmit = {fgpassw}>
       <input type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
         <input type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
@@ -47,7 +49,6 @@ function Forgotpassword(){
       </div>
   )
 }
-
 
 
 export default Forgotpassword;

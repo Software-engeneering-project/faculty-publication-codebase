@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function FacultyNavbar(props) {
+function FacultyNavbar() {
 
     var faculty_details = JSON.parse(localStorage.getItem("details"));
 
@@ -30,7 +30,7 @@ function FacultyNavbar(props) {
                 <div className="dropdown search-btn">
                     <button className="dropbtn">Hi {faculty_details.name}</button>
                     <div className="dropdown-content">
-                        <a href="#">Profile</a>
+                        <a href="/profile">Profile</a>
                     <Link
                         to="/"
                         style={{

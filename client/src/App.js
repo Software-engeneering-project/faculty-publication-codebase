@@ -18,6 +18,7 @@ import FacultyDashboard from "./components/auth/FacultyDashboard"
 import Provide_request from "./components/auth/Provide_request"
 import Recently_Access_Papers from "./components/auth/recently_access_papers"
 import Saved_papers from "./components/auth/Savedpaper"
+import Admin_report from "./components/auth/admin_report"
 import Admin from "./components/auth/admin"
 
 import Profile from "./components/auth/profile";
@@ -42,7 +43,8 @@ const App = () => {
           <Route path = "/provide_request" element = {<Provide_request/>}/>
           <Route path = "/saved_papers" element = {<Saved_papers/>}/>
           <Route path = "/admin" element = {<Admin/>}/>
-          <Route path = 'profile' element = {<Profile />} />
+          <Route path = '/profile' element = {<Profile />} />
+          <Route path = '/admin_report' element = {<Admin_report />} />
         </Routes>
       </BrowserRouter>
     </div>

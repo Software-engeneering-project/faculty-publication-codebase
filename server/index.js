@@ -9,6 +9,7 @@ const Paper = require('./models/paper_model')
 const recent_paper = require("./models/recentlyadded")
 const request_papers = require("./models/request_papers")
 const saved_papers = require("./models/saved_paper")
+const Count_user = require("./models/count_users")
 app.use(cors())
 app.use(express.json())
 
@@ -379,7 +380,7 @@ app.post("/api/get_saved_papers",async(req,res)=>{
 
     }
     else{
-        return res.json({paper_data : "No papers are accessed recently"})
+        return res.json({paper_data : []})
     }
 })
 app.post("/api/sendrequest",async(req,res) =>{
@@ -416,6 +417,78 @@ app.post("/api/fetchrequestpapers",async(req,res) =>{
         return res.json({status : "error"})
     }
     
+})
+app.post("/api/get_report",async(req,res) =>{
+        report = {}
+        userData = await User.find({},)
+        var ud_type = []
+        for(var i = 0 ; i < userData.length;i++){
+            ud_type.push(userData[i].user_type)
+        }
+        var users_F = ud_type.filter(s => s == "F").length
+        var users_S = ud_type.filter(s => s == "S").length
+        var users_P = ud_type.filter(s => s == "P").length
+        report.users_F = users_F
+        report.users_S = users_S
+        report.users_P = users_P
+        paperData = await Paper.find({},)
+        report.number_paper = paperData.length
+        var number_patent = 0
+        var number_privat = 0
+        for(var i = 0 ; i < paperData.length;i++){
+            if(paperData[i].patent == "Yes"){
+                number_patent = number_patent + 1
+            }
+            if(paperData[i].privat == "Yes"){
+                number_privat = number_privat + 1
+            }
+        }
+        report.users_F = users_F
+        report.users_S = users_S
+        report.users_P = users_P
+        report.number_patent = number_patent
+        report.number_privat = number_privat
+        user_count = await Count_user.findOne({admin : "admin@gmail.com"},)
+        report.count_users = user_count.count
+        return res.json({data : report})
+    
+    
+    
+})
+
+app.post("/api/increase_count",async(req,res)=>{
+    user_count = await Count_user.findOne({admin : "admin@gmail.com"},)
+    if(user_count == null){
+        Count_user.create({
+            count : 1,
+            admin : "admin@gmail.com"
+        // cpassword : req.body.cpassword
+            
+        },function(err,newu)
+        {
+            if(err)
+            {
+                console.log('User not added');
+                return res.json({status : 'error'})
+            }
+            // this.context.router.transitionTo("/login");
+            // res.redirect('http://localhost:3000/login')
+            console.log("created user : ",newu);
+            return res.json({status : 'success'})
+            //window.location.href('./api/login')
+        });
+    }
+    else{
+        var temp = user_count.count + 1
+        var nuser = {_id : user_count._id,email : "admin@gmail.com",count : temp}
+        Count_user.findByIdAndUpdate({ _id: nuser._id }, nuser, { new: true }, (err, doc) => {
+            if (!err) { 
+                return res.json({status : 'success'}); }
+            else {
+                return res.json({status : 'error'});
+            }
+        });
+    }
 })
 app.listen(1337,() => {
     console.log("server started on 1337")

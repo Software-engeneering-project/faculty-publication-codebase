@@ -57,6 +57,7 @@ function Recently_access_papers(){
             <br/>
             <h2 className='recent-header'>Recently Accessed</h2>
             <hr className='hori-line'></hr>
+
             {
                 paperList.map((paper,idx) => {
                     return <div key={idx} className = 'recent-card'>

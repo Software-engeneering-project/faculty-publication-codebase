@@ -1,32 +1,44 @@
 
-import {useState, useEffect} from 'react'
+import {useEffect,useState} from 'react'
+import React from 'react'
+import '../css/admin.css'
+import Admin_report from './admin_report'
+import RequestAccess from './RequestAccess'
 
+function  Admin() {
 
+    // const [navflag, setnavflag] = React.useState(true)
 
-function Admin(){
-    var details = JSON.parse(localStorage.getItem("details"));
-    const [content, setContent] = useState({})
-    async function Getdetails(){
-        var resp = (await fetch("http://localhost:1337/api/fetchrequestpapers",{
-            method: "POST",
-            headers:{
-                "Content-Type" :"application/json",
-            },
-            body : JSON.stringify({
-            }),
-            }))
-            var response = await resp.json()
-        if(response.status != "error"){
-            setContent(response.status)
-        }
-    }
+    // useEffect(()=>{
+    //    function setnav(){
+    //        setnavflag()
+    //    }
+    // })
 
-    useEffect(()=>{
-        Getdetails()
-    }, []);
     
-    console.log(content)
-    return (<div></div>)
+   
+    return (
+        <div className='admin-container'>
+            <div className='admin-left-pane'> 
+                <br/>
+                <h3 className='dashboard-title'> Dashboard</h3>
+                <br/>
+                <ul>
+                    <li ><i className="fa-solid fa-house"></i> {'\u00A0'}Home</li>
+                    <li> <i className="fa-solid fa-clipboard-check"></i>{'\u00A0'} {'\u00A0'} Request Access</li>
+                </ul>
+                <div className='logout-bottom'>
+                    <h6> {'\u00A0'} {'\u00A0'} {'\u00A0'}<i class="fa-solid fa-right-from-bracket"></i>Logout</h6>
+                </div>
+
+            </div>
+            <div className='admin-right-pane'>
+                <Admin_report /> 
+            </div>
+        </div>
+    )
 }
 
 export default Admin
+
+

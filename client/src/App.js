@@ -20,6 +20,7 @@ import Recently_Access_Papers from "./components/auth/recently_access_papers"
 import Saved_papers from "./components/auth/Savedpaper"
 import Admin_report from "./components/auth/admin_report"
 import Admin from "./components/auth/admin"
+import RequestAccess from "./components/auth/RequestAccess";
 
 import Profile from "./components/auth/profile";
 
@@ -45,6 +46,7 @@ const App = () => {
           <Route path = "/admin" element = {<Admin/>}/>
           <Route path = '/profile' element = {<Profile />} />
           <Route path = '/admin_report' element = {<Admin_report />} />
+          <Route path = 'requestaccess' element = {<RequestAccess />} />
         </Routes>
       </BrowserRouter>
     </div>

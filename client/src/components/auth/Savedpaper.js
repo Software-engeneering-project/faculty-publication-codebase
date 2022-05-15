@@ -53,15 +53,14 @@ function Savedpaper(){
                         </div>
                         <div className = 'savedpaper-card-right'>
                            <a href= {paper.paperlink}> <button className='linkbutton'>PDF</button></a> 
-                        </div>
-
-                        
+                        </div>                        
                     </div>
                 })
             }
         </>)
     }
-    
 }
 
 export default Savedpaper
+
+

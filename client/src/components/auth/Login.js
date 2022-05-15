@@ -142,6 +142,12 @@ function Login() {
                     color: 'black',
                 }}>Signup</Link> 
             </p>
+
+          <p className='bottom-cont'> 
+          <Link to ='/forgotpassword'  style={{
+                    color: 'black',
+                }}>Forgotpassword ?</Link>
+            </p>  
             <p className='bottom-cont'><Link 
                 to="/filter/1"
                 style={{

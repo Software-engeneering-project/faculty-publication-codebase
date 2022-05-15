@@ -31,3 +31,9 @@
     color: black;
     font-weight: bold;
 }
+
+
+.body-register{
+    min-height: 100vh;
+    background-color: #565C7C;
+}

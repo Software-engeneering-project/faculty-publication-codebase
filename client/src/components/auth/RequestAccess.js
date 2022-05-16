@@ -5,7 +5,7 @@ import '../css/requestaccess.css'
 
 function RequestAccess(){
     var details = JSON.parse(localStorage.getItem("details"));
-    const [content, setContent] = useState({})
+    const [content, setContent] = useState([])
     async function Getdetails(){
         var resp = (await fetch("http://localhost:1337/api/fetchrequestpapers",{
             method: "POST",
@@ -16,8 +16,11 @@ function RequestAccess(){
             }),
             }))
             var response = await resp.json()
+            // console.log(response)
+            // console.log(response.status)
         if(response.status != "error"){
-            setContent(response.data)
+            setContent(response.status)
+            
         }
     }
 
@@ -31,33 +34,30 @@ function RequestAccess(){
         return (
             <>
             <br/>
-            <h2 className='accessrequest-header'>Recently Accessed</h2>
-            <h5 className='req-empty'>No Recently Accessed Papers</h5>
+            <h2 className='accessrequest-header'>Request Access</h2>
+            <h5 className='req-empty'>No Requests yet ...</h5>
             </>
         )
     }
 
     else{
         return <>
-        
             <br />
-            <h2 className='accessrequest-header'>Recently Accessed</h2>
-            <h5 className='req-empty'>No Recently Accessed Papers</h5>
+            <h2 className='accessrequest-header'>Request Access </h2>
+            <hr/>
 
             {
-                content.map( (request,idx) => {
+                content.map((content,idx) => {
                     return (
                         <div key={idx} className = 'req-item'>
-                            <h5 className='req-from'>{request}</h5>
-                            <h6 className='req-reason'>{request.re}</h6>
+                            <h5 className='req-from'>{content.email}</h5>
+                            <h6 className='req-reason'>{content.reason}</h6>
                         </div>
                     )
                 })
             }
-            
-
-
         </>
+
     }
 }
 

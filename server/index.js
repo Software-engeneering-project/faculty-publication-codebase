@@ -406,8 +406,12 @@ app.post("/api/sendrequest",async(req,res) =>{
 app.post("/api/fetchrequestpapers",async(req,res) =>{
     try{
         paperData = await request_papers.find({}, )
+        var temp = []
+        for(let i=0;i<paperData.length;i++){
+            temp.push(paperData[i])
+        }
         if (paperData.length > 0){
-            return res.json({status : paperData})
+            return res.json({status : temp})
         }
         else{
             return res.json({status : "You have responded all requests"})

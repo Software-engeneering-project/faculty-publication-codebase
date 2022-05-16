@@ -23,17 +23,28 @@
 
 
 .heading-register{
-    color: black;
+    color:#006D77;
     text-align: center;
 }
 
 .label-register{
-    color: black;
+    color: #006D77;
     font-weight: bold;
 }
 
 
 .body-register{
     min-height: 100vh;
-    background-color: #565C7C;
+    background-color: #83C5BE;
 }
+
+
+.dropdown-select {
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+

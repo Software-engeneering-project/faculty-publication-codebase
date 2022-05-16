@@ -5,7 +5,8 @@ import { mediaQuery } from '../styled'
 const H3 = styled.h3`
     font-size: 4vw;
     width: 70%;
-    margin-top: 5%;
+    margin-top: 5%; 
+    color: #006D77;
     
     ${mediaQuery} {
         font-size: 8vw;

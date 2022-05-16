@@ -17,6 +17,7 @@ function  Admin() {
     // })
 
     function adminlogout(){
+        localStorage.clear()
         navigate('/')
     }
 

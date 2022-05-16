@@ -46,7 +46,7 @@ const App = () => {
           <Route path = "/admin" element = {<Admin/>}/>
           <Route path = '/profile' element = {<Profile />} />
           <Route path = '/admin_report' element = {<Admin_report />} />
-          <Route path = 'requestaccess' element = {<RequestAccess />} />
+          <Route path = '/requestaccess' element = {<RequestAccess />} />
           <Route path = '/guest_filter' element = {<Guest_filter />} />
         </Routes>
       </BrowserRouter>

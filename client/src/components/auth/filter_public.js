@@ -151,7 +151,8 @@ function handlereset() {
             <input type='checkbox' id="p3" value={privat} onChange={(e) => { setPrivat(!privat) }} />
             <label>Include Private Papers</label>
           </div>
-          <a onClick={handlereset}  >reset</a>
+          <br/>
+          <a className='reset-filter' onClick={handlereset}  >reset</a>
         </form>
       </div>
 

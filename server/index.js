@@ -10,6 +10,7 @@ const recent_paper = require("./models/recentlyadded")
 const request_papers = require("./models/request_papers")
 const saved_papers = require("./models/saved_paper")
 const Count_user = require("./models/count_users")
+const nodemailer = require("nodemailer")
 app.use(cors())
 app.use(express.json())
 
@@ -200,6 +201,10 @@ app.post('/api/register',async(req,res) => {
 // })
 app.post('/api/forgotpassword',async(req,res) => {
     // try{
+        var user = await User.findOne({email : req.body.email});
+        if((req.body.password != req.body.cpassword) || (user == null)){
+            return res.json({status : 'error'})
+        }
         console.log(req.body)
         var user = await User.findOne({email : req.body.email});
         console.log(user.email);
@@ -210,6 +215,28 @@ app.post('/api/forgotpassword',async(req,res) => {
 
             if (!err) { 
                 console.log("Password updated successfully")
+                let mailTransporter = nodemailer.createTransport({
+                    service: 'gmail',
+                        secure: true, 
+                    auth:{
+                        user : "sidharthareddyk06@gmail.com",
+                        pass: "sidduvijji"
+                    }
+                })
+                let details = {
+                    from: "sidharthareddyk06@gmail.com",
+                    to: req.body.email,
+                    subject : "Password is updated",
+                    text: "Updated password is" + req.body.password
+                }
+                mailTransporter.sendMail(details,(err)=>{
+                    if(err){
+                        console.log("Mail not sent",err)
+                    }
+                    else{
+                        console.log("Mail sent")
+                    }
+                })
                 return res.json({status : 'success'}); }
             else {
                 return res.json({status : 'error'});
@@ -218,7 +245,63 @@ app.post('/api/forgotpassword',async(req,res) => {
       
 
 })
-
+app.post("/api/accept_paper",async (req,res)=>{
+    if(req.body.DOI != null){
+        var recent_paper_content = await request_papers.findOne({email : req.body.email});
+        request_papers.findByIdAndDelete(recent_paper_content._id,function(err){
+            if(err){
+                console.log(err)
+            }
+        })
+        let mailTransporter = nodemailer.createTransport({
+            service: 'gmail',
+                secure: true, 
+            auth:{
+                user : "sidharthareddyk06@gmail.com",
+                pass: "sidduvijji"
+            }
+        })
+        let details = {
+            from: "sidharthareddyk06@gmail.com",
+            to: req.body.email,
+            subject : "Request is accepted",
+            text: "We accepted your request and Your Paper link is" + req.body.DOI
+        }
+        mailTransporter.sendMail(details,(err)=>{
+            if(err){
+                console.log("Mail not sent",err)
+            }
+            else{
+                console.log("Mail sent")
+            }
+        })
+    }
+    else{
+        let mailTransporter = nodemailer.createTransport({
+            service: 'gmail',
+                secure: true, 
+            auth:{
+                user : "sidharthareddyk06@gmail.com",
+                pass: "sidduvijji"
+            }
+        })
+        let details = {
+            from: "sidharthareddyk06@gmail.com",
+            to: req.body.email,
+            subject : "Request is not accepted",
+            text: "The paper is kept as private for security" 
+        }
+        mailTransporter.sendMail(details,(err)=>{
+            if(err){
+                console.log("Mail not sent",err)
+            }
+            else{
+                console.log("Mail sent")
+            }
+        })
+    }
+    
+})
 app.get('/api/paperdata', async (req, res) => {
     console.log("sfdsfd")
 	try {
@@ -411,7 +494,7 @@ app.post("/api/fetchrequestpapers",async(req,res) =>{
             temp.push(paperData[i])
         }
         if (paperData.length > 0){
-            return res.json({status : temp})
+            return res.json({data : temp})
         }
         else{
             return res.json({status : "You have responded all requests"})

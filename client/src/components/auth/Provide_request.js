@@ -1,5 +1,8 @@
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
+import '../css/provide_request.css'
+
+
 function Provide_request(){
     var details = JSON.parse(localStorage.getItem("details"));
     var email = details.email
@@ -43,10 +46,11 @@ function Provide_request(){
                 alert("request not sent")
             }
     }
-    return (<div>
-    <form onSubmit = {send_request}>
-    <textarea className = "field" type = "text" placeholder = "Enter Reason" value = {reason} onChange = {(e) => setReason(e.target.value)}></textarea>
-        <button type="submit">Send Request</button>
+    return (<div className='request-form-container'>
+    <form onSubmit = {send_request} className='request-form'>
+    <h1>Request Access</h1>
+    <textarea className = "req-field" type = "text" placeholder = "Enter Reason" value = {reason} onChange = {(e) => setReason(e.target.value)}></textarea>
+        <button className='req-but' type="submit">Send Request</button>
     </form>
     </div>)
 }

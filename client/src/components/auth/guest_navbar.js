@@ -17,16 +17,19 @@ function GuestNavbar() {
     // function resetuser(){
     //     localStorage.clear();
     // }
+
+    function routelogin(){
+        navigate('/')
+    }
    
      return <div className="Navbar">
         <div className="leftSide">
-            <a href="/Guest_Filter">Home</a>
+            <a href="/Guest_Filter"> <h5>Home</h5></a>
         </div>
         <div className="rightSide">
             <input type="text" placeholder="Search Paper" />
-            <button className = "search-btn">Search</button>
-            <h1 >Hi Guest</h1>
-        
+            <button className = "search-btn">Search</button> 
+            <button className = "search-btn" onClick={routelogin}> Login</button> 
         </div>
     </div>
 }

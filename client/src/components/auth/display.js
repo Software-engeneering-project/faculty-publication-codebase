@@ -60,13 +60,17 @@ const Display = (props)=>{
                 <p>{paper.year}</p>
                  */}
                 <div className="heading--container">
-                <h4 id = "c1">{paper.ptitle} </h4>
-                { (details.user_type == "P" && paper.privat == "Yes") ?  (<button onClick={()=>{request(paper.DOI)}}>request</button>)  :  
+                <h4 id = "c1" className='heading-1'>{paper.ptitle} </h4>
+                
+                <div className='heading-2'>
+
+                { (details.user_type == "P" && paper.privat == "Yes") ?  (<button className='savebtn-req' onClick={()=>{request(paper.DOI)}}>Request</button>)  :  
                 (   <div className='paperlinkbtn'>
                     <a className = 'pdflinkbtn' href={paper.paperlink} onClick={()=>{recently_access_papers(paper.DOI)}}>[PDF]</a>
                     <button className='savebtn' onClick = {() => {savepaper(paper.DOI)}}>SAVE</button>
                     </div>  
                 )}
+                </div>
                 </div>
                 <div className = "content--container">
                     <h6 id = "h16">{paper.author} - {paper.year} - {paper.issuedby} - {paper.DOI}</h6>

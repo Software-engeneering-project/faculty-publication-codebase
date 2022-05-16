@@ -27,31 +27,37 @@ function Admin_report(){
     return (<>
         <div className='reports'>
             <div className='report-item'>
-                <span> <i class="fa-solid fa-user"></i> Visitors</span>
+                <h4>Visitors</h4>
                 <center><h6 className='report-val'>{reportdetails.count_users}</h6></center>
             </div>
             <div className='report-item'>
-                <span> <i class="fa-solid fa-user"></i> Papers </span>
+                {/* <span> <i class="fa-solid fa-user"></i>  </span> */}
+                <h4>Papers</h4>
                 <center><h6 className='report-val'>{reportdetails.number_paper}</h6></center>
             </div>
             <div className='report-item'>
-                <span> <i class="fa-solid fa-user"></i> Patents </span>
+                {/* <span> <i class="fa-solid fa-user"></i></span> */}
+                <h4> Patents </h4>
                 <center><h6 className='report-val'>{reportdetails.number_patent}</h6></center>
             </div>
             <div className='report-item'>
-                <span> <i class="fa-solid fa-user"></i> Private </span>
+                {/* <span> <i class="fa-solid fa-user"></i>  </span> */}
+                <h4>Private</h4>
                 <center><h6 className='report-val'>{reportdetails.number_privat}</h6></center>
             </div>
             <div className='report-item'>
-                <span> <i class="fa-solid fa-user"></i> Faculties </span>
+                {/* <span> <i class="fa-solid fa-user"></i></span> */}
+                <h4> Faculties </h4>
                 <center><h6 className='report-val'>{reportdetails.users_F}</h6></center>
             </div>
             <div className='report-item'>
-                <span> <i class="fa-solid fa-user"></i> Students </span>
+                {/* <span> <i class="fa-solid fa-user"></i></span> */}
+                <h4> Students </h4>
                 <center> <h6 className='report-val'>{reportdetails.users_S}</h6></center>
             </div>
             <div className='report-item'>
-                <span> <i class="fa-solid fa-user"></i> Guests </span>
+                {/* <span> <i class="fa-solid fa-user"></i> </span> */}
+                <h4> Guests</h4>
                 <center><h6 className='report-val'>{reportdetails.users_P}</h6></center>
                
             </div>

@@ -1,0 +1,43 @@
+.req-item{
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding: 20px;
+    box-shadow:
+  0 7px 30px -10px rgba(150,170,180,0.5);
+  width: 70%;
+  margin-bottom: 20px;
+}
+
+.Request-Access-container{
+    margin-left: 5%;
+}
+
+.hr-line-req{
+    width: 70%;
+}
+
+
+.req-res{
+    display: flex;
+    column-gap: 20px;
+}
+
+
+.acc-req{
+    background-color: #83C5BE;
+    color: #006D77;
+    border-radius: 5px;
+    border: none;
+    font-weight:bold;
+    padding: 10px;
+}
+
+.rej-req{
+    color: #83C5BE;
+    background-color: #EDF6F9;
+    border-radius: 5px;
+    border: none;
+    font-weight:bold;
+    padding: 10px;
+}

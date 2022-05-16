@@ -50,12 +50,12 @@ function Register() {
         <form className="form-register" onSubmit={registerUser} action='Login'>
           <h1 className="heading-register">Register</h1>
           <label className="label-register">Name</label>
-          <input className="field" type="text" placeholder="Name" value={name} onChange={(e) => SetName(e.target.value)} />
+          <input id ="name" className="field" type="text" placeholder="Name" value={name} onChange={(e) => SetName(e.target.value)} />
           <label className="label">Email</label>
-          <input className="field" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input id ="email" className="field" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <label className="label">Password</label>
-          <input className="field" type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <select value={user_type} onChange={(e) => SetuserType(e.target.value)}>
+          <input id ="pass" className="field" type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <select id = "user_type" value={user_type} onChange={(e) => SetuserType(e.target.value)}>
             <option value="F" >Faculty</option>
             <option value="S">Student</option>
             <option value="P">Public</option>

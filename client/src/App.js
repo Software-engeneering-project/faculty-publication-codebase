@@ -21,7 +21,7 @@ import Saved_papers from "./components/auth/Savedpaper"
 import Admin_report from "./components/auth/admin_report"
 import Admin from "./components/auth/admin"
 import RequestAccess from "./components/auth/RequestAccess";
-
+import Guest_filter from "./components/auth/Guest_Filter"
 import Profile from "./components/auth/profile";
 
 const App = () => {
@@ -47,6 +47,7 @@ const App = () => {
           <Route path = '/profile' element = {<Profile />} />
           <Route path = '/admin_report' element = {<Admin_report />} />
           <Route path = 'requestaccess' element = {<RequestAccess />} />
+          <Route path = '/guest_filter' element = {<Guest_filter />} />
         </Routes>
       </BrowserRouter>
     </div>

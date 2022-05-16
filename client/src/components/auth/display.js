@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../css/display.css'
 
 const Display = (props)=>{
+    console.log(props)
     // console.log(props.myRows)
     const navigate = useNavigate();
     var details = JSON.parse(localStorage.getItem("details"));
@@ -59,7 +60,7 @@ const Display = (props)=>{
                 <p>{paper.year}</p>
                  */}
                 <div className="heading--container">
-                <h4>{paper.ptitle} </h4>
+                <h4 id = "c1">{paper.ptitle} </h4>
                 { (details.user_type == "P" && paper.privat == "Yes") ?  (<button onClick={()=>{request(paper.DOI)}}>request</button>)  :  
                 (   <div className='paperlinkbtn'>
                     <a className = 'pdflinkbtn' href={paper.paperlink} onClick={()=>{recently_access_papers(paper.DOI)}}>[PDF]</a>
@@ -68,7 +69,7 @@ const Display = (props)=>{
                 )}
                 </div>
                 <div className = "content--container">
-                    <h6>{paper.author} - {paper.year} - {paper.issuedby} - {paper.DOI}</h6>
+                    <h6 id = "h16">{paper.author} - {paper.year} - {paper.issuedby} - {paper.DOI}</h6>
                     
                     <hr/>
                     <p>
@@ -78,7 +79,7 @@ const Display = (props)=>{
                         {(props.citation == true) ?
                             <>
                             <h6>Citation</h6>
-                        <a>{paper.citation}</a>
+                        <a id = "a1">{paper.citation}</a>
                             </>
                          : <></>}
                     </div>

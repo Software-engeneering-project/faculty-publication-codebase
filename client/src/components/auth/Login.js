@@ -62,7 +62,7 @@ function Login() {
 
     if(data.status === 'success'){
       // alert('Login successfull') 
-      // console.log(34343443)  
+      // console.log(34343443) 
 
       await getuser(email,password).then( data => {
         userDetails(data);
@@ -130,9 +130,9 @@ function Login() {
       <form className = "form" onSubmit = {loginUser}>
         <center><h1 className = "heading" >LOGIN</h1> </center>
         <label className = "label">EMAIL</label>
-        <input className = "field" type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
+        <input id= "Email" className = "field" type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
         <label className = "label">PASSWORD</label>
-        <input className = "field"  type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
+        <input id ="Password" className = "field"  type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
      
         <input className = "butt" type = "submit" value = "Login" onClick={()=>{inc_co()}} />
 
@@ -149,7 +149,7 @@ function Login() {
                 }}>Forgotpassword ?</Link>
             </p>  
             <p className='bottom-cont'><Link 
-                to="/filter/1"
+                to="/Guest_Filter"
                 style={{
                     color: 'black',
                 }} onClick={()=>{inc_co()}}>Skip and Visit</Link>

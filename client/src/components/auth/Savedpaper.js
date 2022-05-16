@@ -22,7 +22,6 @@ function Savedpaper(){
     useEffect(()=>{
         getsaved_papers()
     }, []);
-    console.log(paperList)
     if (paperList.length === 0) {
         return (
 

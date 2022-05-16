@@ -20,7 +20,10 @@ function FacultyNavbar() {
    
      return <div className="Navbar">
         <div className="leftSide">
-            <a href="/filter">Home</a>
+        { (faculty_details.user_type === "S") ? <a href="/filter">Home</a> : <></>}
+        { (faculty_details.user_type === "P") ? <a href="/filter_public">Home</a> : <></>}
+        { (faculty_details.user_type === "F") ? <a href="/faculty_filter">Home</a> : <></>}
+            
         </div>
         <div className="rightSide">
             <input type="text" placeholder="Search Paper" />

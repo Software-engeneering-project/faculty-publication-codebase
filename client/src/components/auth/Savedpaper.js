@@ -40,7 +40,7 @@ function Savedpaper(){
         return(<> 
             {/* {paperList.length > 0 && componentList} */}
             <br/>
-            <h2>Saved Papers</h2>
+            <h2 className='saved-papers-heading'>Saved Papers</h2>
             <hr className='horiz-line'></hr>
            
             {

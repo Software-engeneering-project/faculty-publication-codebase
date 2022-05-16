@@ -67,24 +67,30 @@
 
 
 .upload--container {
-    background-color: #565C7C;
+    background-color: #83C5BE;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     margin: auto;
-    height: 100%;
+    height: 100vh;
     padding: 1vw;
 }
 
 .upload--heading {
-    color: white;
+    color: #006D77;
 }
 
 .upload--form {
     display: flex;
     flex-direction: row;
     row-gap: 0px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 11px 10px 5px -3px rgba(0,0,0,0.59);
+-webkit-box-shadow: 11px 10px 5px -3px rgba(0,0,0,0.59);
+-moz-box-shadow: 11px 10px 5px -3px rgba(0,0,0,0.59);
+
 }
 .upload--form--left {
     display: flex;
@@ -100,12 +106,13 @@
 }
 
 .upload--label {
-    color: white;
+    color: #006D77;
+    font-weight: 600;
 }
 
 .upload--field {
-    background-color: #6D738E;
-    color: white;
+    background-color: #EDF6F9;
+    color: #006D77;
     padding: 5px;
     border-radius: 5px;
     border: none;
@@ -113,15 +120,16 @@
 }
 
 .upload--field::placeholder {
-    color: #cecece;
+    color: #83C5BE;
 }
 
 .upload--butt {
-    background-color: #1059FF;
-    color: white;
+    background-color: #83C5BE;
+    color: #006D77;
     padding: 5px;
     border-radius: 5px;
     border: none;
+    font-weight:bold;
 }
 
 .upload--bottom-cont{

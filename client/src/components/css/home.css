@@ -18,16 +18,7 @@
     margin: 5% 0 2% 0;
 }
 
-.filter--container select {
-    
-}
 
-.checkbox--container {
-}
-
-.checkbox--container input {
-
-}
 
 .checkbox--container label {
     margin: 0 5% ;
@@ -71,8 +62,8 @@
 .reset-filter{
     outline: none;
     text-decoration: none;
-    background-color: #021E39;
-    color: whitesmoke;
+    background-color: #006D77;
+    color: #EDF6F9;
     text-align: center;    
 }
 

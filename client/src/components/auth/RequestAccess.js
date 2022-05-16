@@ -52,6 +52,8 @@ function RequestAccess(){
                         <div key={idx} className = 'req-item'>
                             <h5 className='req-from'>{content.email}</h5>
                             <h6 className='req-reason'>{content.reason}</h6>
+                            <button>Accept Req</button>
+                            <button>Reject Req</button>
                         </div>
                     )
                 })

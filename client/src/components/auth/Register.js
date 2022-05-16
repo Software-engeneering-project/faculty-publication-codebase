@@ -60,8 +60,7 @@ function Register() {
             <option value="S">Student</option>
             <option value="P">Public</option>
           </select>
-        </div>
-         
+       
           {/* <input type = "password" placeholder = "Confirm Password" value = {cpassword} onChange = {(e) => setPassword(e.target.value)}/> */}
           <input className="butt" type="submit" value="Submit" />
         </form>

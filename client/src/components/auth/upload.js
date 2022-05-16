@@ -115,7 +115,7 @@ function Upload() {
                     <textarea id = "Abstract" placeholder="Abstract" value={abstract} onChange={(e) => setAbstract(e.target.value)} /><br />
 
                     
-                    <input type="submit" value="Upload" /><br />
+                    <input className='upload--butt' type="submit" value="Upload" /><br />
                 </div>
 
 

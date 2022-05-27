@@ -219,12 +219,12 @@ app.post('/api/forgotpassword',async(req,res) => {
                     service: 'gmail',
                         secure: true, 
                     auth:{
-                        user : "sidharthareddyk06@gmail.com",
-                        pass: "sidduvijji"
+                        user : "*******@gmail.com",
+                        pass: "******"
                     }
                 })
                 let details = {
-                    from: "sidharthareddyk06@gmail.com",
+                    from: "*********@gmail.com",
                     to: req.body.email,
                     subject : "Password is updated",
                     text: "Updated password is" + req.body.password
@@ -246,8 +246,9 @@ app.post('/api/forgotpassword',async(req,res) => {
 
 })
 app.post("/api/accept_paper",async (req,res)=>{
-    if(req.body.DOI != null){
-        var recent_paper_content = await request_papers.findOne({email : req.body.email});
+    if(req.body.c == 1){
+        var recent_paper_content = await request_papers.findOne({email : req.body.email,DOI : req.body.DOI,reason:req.body.reason});
+        var paper_content = await Paper.findOne({DOI:req.body.DOI})
         request_papers.findByIdAndDelete(recent_paper_content._id,function(err){
             if(err){
                 console.log(err)
@@ -257,15 +258,15 @@ app.post("/api/accept_paper",async (req,res)=>{
             service: 'gmail',
                 secure: true, 
             auth:{
-                user : "sidharthareddyk06@gmail.com",
-                pass: "sidduvijji"
+                user : "********@gmail.com",
+                pass: "********"
             }
         })
         let details = {
-            from: "sidharthareddyk06@gmail.com",
+            from: "********@gmail.com",
             to: req.body.email,
             subject : "Request is accepted",
-            text: "We accepted your request and Your Paper link is" + req.body.DOI
+            text: "We accepted your request and Your Paper link is" + paper_content.paperlink
         }
         mailTransporter.sendMail(details,(err)=>{
             if(err){
@@ -277,16 +278,22 @@ app.post("/api/accept_paper",async (req,res)=>{
         })
     }
     else{
+        var recent_paper_content = await request_papers.findOne({email : req.body.email,DOI : req.body.DOI,reason:req.body.reason});
+        request_papers.findByIdAndDelete(recent_paper_content._id,function(err){
+            if(err){
+                console.log(err)
+            }
+        })
         let mailTransporter = nodemailer.createTransport({
             service: 'gmail',
                 secure: true, 
             auth:{
-                user : "sidharthareddyk06@gmail.com",
-                pass: "sidduvijji"
+                user : "*********@gmail.com",
+                pass: "********"
             }
         })
         let details = {
-            from: "sidharthareddyk06@gmail.com",
+            from: "*******@gmail.com",
             to: req.body.email,
             subject : "Request is not accepted",
             text: "The paper is kept as private for security" 
@@ -497,7 +504,7 @@ app.post("/api/fetchrequestpapers",async(req,res) =>{
             return res.json({data : temp})
         }
         else{
-            return res.json({status : "You have responded all requests"})
+            return res.json({data : []})
         }
     }
     catch(e){

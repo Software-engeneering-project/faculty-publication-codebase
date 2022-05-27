@@ -130,7 +130,7 @@ function Login() {
       <form className = "form" onSubmit = {loginUser}>
         <center><h1 className = "heading" >LOGIN</h1> </center>
         <label className = "label">EMAIL</label>
-        <input id= "Email" className = "field" type = "email" placeholder = "Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
+        <input id= "Email" className = "field" type = "email" placeholder = "Enter Email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
         <label className = "label">PASSWORD</label>
         <input id ="Password" className = "field"  type = "password" placeholder = "Enter Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
      

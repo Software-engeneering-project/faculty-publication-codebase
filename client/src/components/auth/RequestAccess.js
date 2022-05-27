@@ -34,18 +34,18 @@ function RequestAccess(){
     
     console.log(content)
 
-    if( content === null) {
+    if( content === []) {
         return (
             <>
             <br/>
-            <h2 className='accessrequest-header'>Request Access</h2>
-            <h5 className='req-empty'>No Requests yet ...</h5>
+            <h2 className='accessrequest-header'>No Request Access</h2>
+            {/* <h5 className='req-empty'>No Requests yet ...</h5> */}
             </>
         )
     }
 
     else{
-         async function send_mail(DOI,email){
+         async function send_mail(DOI,email,reason,c){
             var res = (await fetch("http://localhost:1337/api/accept_paper",{
             method: "POST",
             headers:{
@@ -53,10 +53,13 @@ function RequestAccess(){
             },
             body : JSON.stringify({
                 email : email,
-                DOI,DOI
+                DOI:DOI,
+                reason:reason,
+                c : c
             }),
             
             }))
+            window.location.reload(false);
             // useEffect(()=>{
             //     Getdetails()
             // }, []);
@@ -79,8 +82,8 @@ function RequestAccess(){
                             <h5 className='req-from'>From: {content.email}</h5>
                             <h6 className='req-reason'>Reason : {content.reason}</h6>
                         <div className='req-res'>
-                            <button className='acc-req' onClick={()=>{send_mail(content.DOI,content.email)}} >Accept Req</button>
-                            <button className='rej-req' onClick={()=>{send_mail(content.DOI,null)}}>Reject Req</button>
+                            <button className='acc-req' onClick={()=>{send_mail(content.DOI,content.email,content.reason,1)}} >Accept Req</button>
+                            <button className='rej-req' onClick={()=>{send_mail(content.DOI,content.email,content.reason,0)}}>Reject Req</button>
                         </div>
                         </div>
                     )
